@@ -1,17 +1,17 @@
 "use client";
 
-import { ClerkProvider } from "@clerk/nextjs";
 import type { ReactNode } from "react";
-import { env } from "@/lib/env";
+// import { ClerkProvider } from "@clerk/nextjs";
+// import { env } from "@/lib/env";
 
 type ProvidersProps = {
-  children: ReactNode;
+    children: ReactNode;
 };
 
 export function Providers({ children }: ProvidersProps) {
-  if (!env.clerkPublishableKey) {
+    // if (!env.clerkPublishableKey) {
+    //     return <>{children}</>;
+    // }
+    // return <ClerkProvider>{children}</ClerkProvider>;
     return <>{children}</>;
-  }
-
-  return <ClerkProvider>{children}</ClerkProvider>;
 }

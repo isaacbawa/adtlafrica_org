@@ -8,6 +8,7 @@
   --ink: #21211f;
   --ink-soft: #4b4b48;
   --border: #e5e5e2;
+  --surface-soft: #f8f8f6;
 }
 
 @theme inline {
@@ -20,12 +21,16 @@
   --color-ink: var(--ink);
   --color-muted: var(--ink-soft);
   --color-border: var(--border);
+  --color-surface-soft: var(--surface-soft);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-public-sans), sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
 }
 
 h1,
@@ -33,9 +38,107 @@ h2,
 h3,
 h4 {
   font-family: var(--font-source-serif), serif;
+  letter-spacing: -0.02em;
 }
 
 a,
 button {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 78rem;
+  padding-inline: 1.25rem;
+}
+
+.section-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+}
+
+.surface-panel {
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+
+.info-card {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 0.4rem;
+  padding: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .info-card {
+    padding: 1.5rem;
+  }
+}
+
+.card-body {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.form-shell {
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: #fff;
+  padding: 1.5rem;
+}
+
+.field-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field-input {
+  margin-top: 0.5rem;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem;
+  color: var(--ink);
+  background: #fff;
+}
+
+.field-input:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--brand-primary) 45%, white);
+  outline-offset: 1px;
+}
+
+.btn-primary {
+  border-radius: 0.35rem;
+  background: var(--brand-primary);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.7rem 1.2rem;
+}
+
+.btn-primary:hover {
+  background: var(--brand-primary-strong);
+}
+
+.btn-secondary {
+  border-radius: 0.35rem;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.7rem 1.2rem;
+  background: #fff;
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
 }

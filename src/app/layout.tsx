@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Public_Sans, Source_Serif_4 } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { Providers } from "@/components/providers";
 import "./globals.css";
 
 const sans = Public_Sans({
@@ -40,13 +39,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable} h-full antialiased`}>
       <body className="min-h-full bg-white text-ink">
-        <Providers>
+        {/* Auth provider intentionally disabled for now.
+        <ClerkProvider>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
             <div className="flex-1">{children}</div>
             <SiteFooter />
           </div>
-        </Providers>
+        </ClerkProvider>
+        */}
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          <div className="flex-1">{children}</div>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );
