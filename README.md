@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ADTL Africa Platform
 
-## Getting Started
+Institutional web platform for ADTL Africa, built with Next.js App Router, Neon PostgreSQL, and Clerk-based role access.
 
-First, run the development server:
+## Product Scope
+
+- Public institutional pages: Home, About, Services, Resources, Our People, Blog, Partnership, Career, Contact
+- Secure submission handling: Contact, Partnership, and Career application forms
+- CMS-like API layer for Blog, Resources, Team members, and Job listings
+- Admin dashboard route with role-gated access
+- SEO support: route metadata, sitemap, robots
+
+## Stack
+
+- Next.js 16 (App Router)
+- TypeScript
+- Neon PostgreSQL (`@neondatabase/serverless`)
+- Clerk authentication and role checks (`@clerk/nextjs`)
+- Zod validation
+
+## Local Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Configure values in `.env.local`.
+
+4. Apply database schema from `src/db/schema.sql` to your Neon database.
+
+5. Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Required for production behavior:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `DATABASE_URL` - Neon connection string
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - Clerk publishable key
+- `CLERK_SECRET_KEY` - Clerk secret key
+- `ADMIN_NOTIFICATION_EMAIL` - destination for submission notifications
 
-## Learn More
+## Clerk Roles
 
-To learn more about Next.js, take a look at the following resources:
+Role is expected in `publicMetadata.role`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `admin`
+- `editor`
+- `public` (default)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Write endpoints are protected for `admin` and `editor`.
 
-## Deploy on Vercel
+## Database Schema
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+SQL schema is defined in [src/db/schema.sql](src/db/schema.sql).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tables:
+
+- `users`
+- `blog_posts`
+- `resources`
+- `team_members`
+- `job_listings`
+- `applications`
+- `contact_messages`
+- `partnership_requests`
+
+All tables include timestamps and constraints. Indexes are included for common query paths.
+
+## Security Controls Implemented
+
+- Server-side validation using Zod
+- Input sanitization for text fields
+- Honeypot field checks on form submissions
+- Per-IP rate limiting (in-memory baseline)
+- Prepared SQL statements via Neon template tagging
+- CV upload checks (PDF-only, 5MB max)
+
+## Production Hardening Notes
+
+- Replace in-memory rate limiting with Redis/Upstash for distributed environments.
+- Integrate a transactional email provider for real notification delivery.
+- Add malware scanning step for CV uploads before durable file storage.
+- Configure Clerk sign-in/sign-up flows and production domains.
+
+## Deployment
+
+Recommended hosting: Vercel.
+
+Deployment steps:
+
+1. Connect repository to Vercel
+2. Configure environment variables
+3. Run Neon schema migration
+4. Deploy

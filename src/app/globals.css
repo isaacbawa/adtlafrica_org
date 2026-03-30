@@ -2,25 +2,40 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #21211f;
+  --brand-primary: #f87018;
+  --brand-primary-strong: #e65c13;
+  --ink: #21211f;
+  --ink-soft: #4b4b48;
+  --border: #e5e5e2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-public-sans);
+  --font-serif: var(--font-source-serif);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-strong: var(--brand-primary-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-soft);
+  --color-border: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-public-sans), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-source-serif), serif;
+}
+
+a,
+button {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
