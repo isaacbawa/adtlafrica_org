@@ -1,6 +1,6 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { hasClerk } from "@/lib/env";
-import { logger } from "@/lib/logger";
+import { serverLogger } from "@/lib/server-logger";
 
 export type UserRole = "admin" | "editor" | "public";
 
@@ -28,7 +28,7 @@ export async function getUserRole(): Promise<UserRole> {
             return role;
         }
     } catch (error) {
-        logger.error("Error fetching user role from Clerk");
+        serverLogger.error("Error fetching user role from Clerk", error);
     }
     return "public";
 }

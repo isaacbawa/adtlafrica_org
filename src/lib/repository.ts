@@ -1,5 +1,5 @@
 import { getDb } from "@/lib/db";
-import { logger } from "@/lib/logger";
+import { serverLogger } from "@/lib/server-logger";
 
 export type BlogPost = {
     id: number;
@@ -38,6 +38,7 @@ export type JobListing = {
     requirements: string;
     deadline: string;
     published: boolean;
+    deletedAt: string | null;
 };
 
 const mockBlog: BlogPost[] = [
@@ -93,6 +94,7 @@ const mockJobs: JobListing[] = [
         requirements: "Experience in programme coordination, stakeholder communication, and digital literacy training support.",
         deadline: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString(),
         published: true,
+        deletedAt: null,
     },
 ];
 
@@ -111,7 +113,7 @@ export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
       `) as BlogPost[];
         return rows;
     } catch (error) {
-        logger.error("Database query failed, falling back to mock data");
+        serverLogger.error("Database query failed, falling back to mock data", error);
         return mockBlog;
     }
 }
@@ -131,7 +133,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       `) as BlogPost[];
         return rows[0] ?? null;
     } catch (error) {
-        logger.error("Database query failed, falling back to mock data");
+        serverLogger.error("Database query failed, falling back to mock data", error);
         return mockBlog.find((post) => post.slug === slug) ?? null;
     }
 }
@@ -151,7 +153,7 @@ export async function getPublishedResources(): Promise<ResourceItem[]> {
       `) as ResourceItem[];
         return rows;
     } catch (error) {
-        logger.error("Database query failed, falling back to mock data");
+        serverLogger.error("Database query failed, falling back to mock data", error);
         return mockResources;
     }
 }
@@ -170,7 +172,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       `) as TeamMember[];
         return rows;
     } catch (error) {
-        logger.error("Database query failed, falling back to mock data");
+        serverLogger.error("Database query failed, falling back to mock data", error);
         return mockTeam;
     }
 }
@@ -183,14 +185,14 @@ export async function getPublishedJobs(): Promise<JobListing[]> {
 
     try {
         const rows = (await db`
-        SELECT id, title, description, requirements, deadline, published
+        SELECT id, title, description, requirements, deadline, published, deleted_at AS "deletedAt"
         FROM job_listings
-        WHERE published = TRUE AND deadline >= NOW()
+        WHERE published = TRUE AND deadline >= NOW() AND deleted_at IS NULL
         ORDER BY deadline ASC
       `) as JobListing[];
         return rows;
     } catch (error) {
-        logger.error("Database query failed, falling back to mock data");
+        serverLogger.error("Database query failed, falling back to mock data", error);
         return mockJobs;
     }
 }
