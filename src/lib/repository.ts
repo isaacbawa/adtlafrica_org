@@ -101,13 +101,18 @@ export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
         return mockBlog;
     }
 
-    const rows = (await db`
-    SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
-    FROM blog_posts
-    WHERE published = TRUE
-    ORDER BY created_at DESC
-  `) as BlogPost[];
-    return rows;
+    try {
+        const rows = (await db`
+        SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
+        FROM blog_posts
+        WHERE published = TRUE
+        ORDER BY created_at DESC
+      `) as BlogPost[];
+        return rows;
+    } catch (error) {
+        console.error("Database query failed, falling back to mock data:", error);
+        return mockBlog;
+    }
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
@@ -116,13 +121,18 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
         return mockBlog.find((post) => post.slug === slug) ?? null;
     }
 
-    const rows = (await db`
-    SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
-    FROM blog_posts
-    WHERE slug = ${slug} AND published = TRUE
-    LIMIT 1
-  `) as BlogPost[];
-    return rows[0] ?? null;
+    try {
+        const rows = (await db`
+        SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
+        FROM blog_posts
+        WHERE slug = ${slug} AND published = TRUE
+        LIMIT 1
+      `) as BlogPost[];
+        return rows[0] ?? null;
+    } catch (error) {
+        console.error("Database query failed, falling back to mock data:", error);
+        return mockBlog.find((post) => post.slug === slug) ?? null;
+    }
 }
 
 export async function getPublishedResources(): Promise<ResourceItem[]> {
@@ -131,13 +141,18 @@ export async function getPublishedResources(): Promise<ResourceItem[]> {
         return mockResources;
     }
 
-    const rows = (await db`
-    SELECT id, title, category, description, url, published, download_count AS "downloadCount"
-    FROM resources
-    WHERE published = TRUE
-    ORDER BY created_at DESC
-  `) as ResourceItem[];
-    return rows;
+    try {
+        const rows = (await db`
+        SELECT id, title, category, description, url, published, download_count AS "downloadCount"
+        FROM resources
+        WHERE published = TRUE
+        ORDER BY created_at DESC
+      `) as ResourceItem[];
+        return rows;
+    } catch (error) {
+        console.error("Database query failed, falling back to mock data:", error);
+        return mockResources;
+    }
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
@@ -146,12 +161,17 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
         return mockTeam;
     }
 
-    const rows = (await db`
-    SELECT id, name, role, bio, linkedin_url AS "linkedinUrl"
-    FROM team_members
-    ORDER BY display_order ASC, created_at DESC
-  `) as TeamMember[];
-    return rows;
+    try {
+        const rows = (await db`
+        SELECT id, name, role, bio, linkedin_url AS "linkedinUrl"
+        FROM team_members
+        ORDER BY display_order ASC, created_at DESC
+      `) as TeamMember[];
+        return rows;
+    } catch (error) {
+        console.error("Database query failed, falling back to mock data:", error);
+        return mockTeam;
+    }
 }
 
 export async function getPublishedJobs(): Promise<JobListing[]> {
@@ -160,11 +180,16 @@ export async function getPublishedJobs(): Promise<JobListing[]> {
         return mockJobs;
     }
 
-    const rows = (await db`
-    SELECT id, title, description, requirements, deadline, published
-    FROM job_listings
-    WHERE published = TRUE AND deadline >= NOW()
-    ORDER BY deadline ASC
-  `) as JobListing[];
-    return rows;
+    try {
+        const rows = (await db`
+        SELECT id, title, description, requirements, deadline, published
+        FROM job_listings
+        WHERE published = TRUE AND deadline >= NOW()
+        ORDER BY deadline ASC
+      `) as JobListing[];
+        return rows;
+    } catch (error) {
+        console.error("Database query failed, falling back to mock data:", error);
+        return mockJobs;
+    }
 }
