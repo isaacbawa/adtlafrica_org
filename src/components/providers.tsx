@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 import { env } from "@/lib/env";
 
 type ProvidersProps = {
@@ -10,7 +11,17 @@ type ProvidersProps = {
 
 export function Providers({ children }: ProvidersProps) {
     if (!env.clerkPublishableKey) {
-        return <>{children}</>;
+        return (
+            <>
+                {children}
+                <Toaster />
+            </>
+        );
     }
-    return <ClerkProvider>{children}</ClerkProvider>;
+    return (
+        <ClerkProvider>
+            {children}
+            <Toaster />
+        </ClerkProvider>
+    );
 }

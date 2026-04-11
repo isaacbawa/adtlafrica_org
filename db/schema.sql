@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS job_listings (
 -- Applications table
 CREATE TABLE IF NOT EXISTS applications (
     id SERIAL PRIMARY KEY,
-    job_id INTEGER REFERENCES job_listings(id),
+    job_id INTEGER REFERENCES job_listings(id) ON DELETE CASCADE,
     name TEXT NOT NULL,
     email TEXT NOT NULL,
     cover_letter TEXT,

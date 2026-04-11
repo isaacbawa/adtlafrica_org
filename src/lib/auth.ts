@@ -1,5 +1,6 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { hasClerk } from "@/lib/env";
+import { logger } from "@/lib/logger";
 
 export type UserRole = "admin" | "editor" | "public";
 
@@ -19,11 +20,15 @@ export async function getUserRole(): Promise<UserRole> {
     if (!userId) {
         return "public";
     }
-    const client = await clerkClient();
-    const user = await client.users.getUser(userId);
-    const role = user.publicMetadata?.role;
-    if (role === "admin" || role === "editor") {
-        return role;
+    try {
+        const client = await clerkClient();
+        const user = await client.users.getUser(userId);
+        const role = user.publicMetadata?.role;
+        if (role === "admin" || role === "editor") {
+            return role;
+        }
+    } catch (error) {
+        logger.error("Error fetching user role from Clerk");
     }
     return "public";
 }

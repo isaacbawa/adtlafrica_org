@@ -1,4 +1,5 @@
 import { getDb } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export type BlogPost = {
     id: number;
@@ -110,7 +111,7 @@ export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
       `) as BlogPost[];
         return rows;
     } catch (error) {
-        console.error("Database query failed, falling back to mock data:", error);
+        logger.error("Database query failed, falling back to mock data");
         return mockBlog;
     }
 }
@@ -130,7 +131,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       `) as BlogPost[];
         return rows[0] ?? null;
     } catch (error) {
-        console.error("Database query failed, falling back to mock data:", error);
+        logger.error("Database query failed, falling back to mock data");
         return mockBlog.find((post) => post.slug === slug) ?? null;
     }
 }
@@ -150,7 +151,7 @@ export async function getPublishedResources(): Promise<ResourceItem[]> {
       `) as ResourceItem[];
         return rows;
     } catch (error) {
-        console.error("Database query failed, falling back to mock data:", error);
+        logger.error("Database query failed, falling back to mock data");
         return mockResources;
     }
 }
@@ -169,7 +170,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       `) as TeamMember[];
         return rows;
     } catch (error) {
-        console.error("Database query failed, falling back to mock data:", error);
+        logger.error("Database query failed, falling back to mock data");
         return mockTeam;
     }
 }
@@ -189,7 +190,7 @@ export async function getPublishedJobs(): Promise<JobListing[]> {
       `) as JobListing[];
         return rows;
     } catch (error) {
-        console.error("Database query failed, falling back to mock data:", error);
+        logger.error("Database query failed, falling back to mock data");
         return mockJobs;
     }
 }

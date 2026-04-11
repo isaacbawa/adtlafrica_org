@@ -1,6 +1,8 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
+import type { NextRequest } from "next/server";
+import { env } from "@/lib/env";
 
-export default clerkMiddleware();
+export default env.clerkSecretKey ? clerkMiddleware() : ((request: NextRequest) => { });
 
 export const config = {
     matcher: [
