@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs";
 import { SectionShell } from "@/components/section-shell";
 import { getUserRole } from "@/lib/auth";
 
@@ -10,6 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
+    const { userId } = await auth();
+
+    // Protect the admin page - must be signed in
+    if (!userId) {
+        redirect("/");
+    }
+
     const role = await getUserRole();
     if (role !== "admin" && role !== "editor") {
         redirect("/");

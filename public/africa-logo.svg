@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid meet">
+  <!-- Africa continent base in orange -->
+  <path d="M 100 20 L 120 25 L 130 30 L 135 35 L 138 40 L 140 50 L 142 60 L 143 70 L 145 80 L 147 90 L 148 100 L 150 110 L 151 120 L 152 130 L 151 140 L 150 150 L 148 160 L 146 170 L 144 180 L 142 190 L 140 200 L 138 210 L 135 215 L 130 218 L 120 220 L 110 221 L 100 222 L 90 221 L 80 220 L 70 218 L 65 215 L 60 210 L 58 200 L 57 190 L 56 180 L 55 170 L 54 160 L 53 150 L 52 140 L 51 130 L 50 120 L 49 110 L 48 100 L 47 90 L 46 80 L 45 70 L 44 60 L 43 50 L 42 40 L 40 35 L 35 30 L 30 25 L 25 22 L 20 20 L 50 18 Z" fill="#FF6B35"/>
+  
+  <!-- West Africa -->
+  <path d="M 25 22 L 35 30 L 40 50 L 42 70 L 43 90 L 42 110 L 40 130 L 38 150 L 35 170 L 33 190 L 32 200 L 30 205 L 28 210 L 25 212 L 22 210 L 20 200 L 18 180 L 17 160 L 16 140 L 15 120 L 14 100 L 13 80 L 12 60 L 11 40 L 10 30 L 15 25 Z" fill="#FF6B35"/>
+  
+  <!-- East Africa -->
+  <path d="M 150 110 L 165 115 L 175 120 L 180 130 L 182 145 L 180 160 L 178 175 L 175 190 L 172 205 L 170 215 L 168 220 L 160 218 L 152 210 L 150 195 L 148 180 L 147 160 L 146 140 L 145 120 Z" fill="#FF6B35"/>
+  
+  <!-- Southern Africa -->
+  <path d="M 120 180 L 135 185 L 145 190 L 152 200 L 150 215 L 140 220 L 125 222 L 110 221 L 100 222 L 95 220 L 90 215 L 92 200 L 98 190 L 108 185 Z" fill="#FF6B35"/>
+  
+  <!-- Central/Black band (diagonal across middle) -->
+  <ellipse cx="90" cy="110" rx="65" ry="28" fill="#1A1A1A" transform="rotate(-25 90 110)"/>
+  
+  <!-- Madagascar -->
+  <path d="M 168 190 L 172 195 L 173 210 L 170 215 L 168 212 L 167 200 Z" fill="#FF6B35"/>
+</svg>

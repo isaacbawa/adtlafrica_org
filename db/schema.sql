@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS team_members (
     name TEXT NOT NULL,
     role TEXT NOT NULL,
     bio TEXT NOT NULL,
+    image TEXT,
     linkedin_url TEXT,
     display_order INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),

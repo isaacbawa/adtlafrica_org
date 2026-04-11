@@ -20,8 +20,8 @@ const slides: Slide[] = [
         title: "Driving AI & Digital Transformation Across Africa",
         body:
             "We partner with institutions and clients to design practical systems, build real digital capability, and deliver measurable transformation outcomes.",
-        image: "/visual-network.svg",
-        imageAlt: "Digital systems collaboration visual",
+        image: "/Building Practical Systems.png",
+        imageAlt: "Building Practical Systems With ADTL Africa",
         primaryCta: { href: "/services", label: "Explore Services" },
         secondaryCta: { href: "/partnership", label: "Partner With Us" },
     },
@@ -30,8 +30,8 @@ const slides: Slide[] = [
         title: "AI & Digital Skills Training Programme",
         body:
             "Our intensive cohort model equips participants with practical AI tool experience, live projects, mentorship, and implementation confidence.",
-        image: "/visual-capacity.svg",
-        imageAlt: "Capacity building visual",
+        image: "/Building Practical Systems.png",
+        imageAlt: "Building Practical Systems With ADTL Africa",
         primaryCta: { href: "/career", label: "View Opportunities" },
         secondaryCta: { href: "/resources", label: "Browse Resources" },
     },
@@ -40,8 +40,8 @@ const slides: Slide[] = [
         title: "Build Practical Systems With ADTL Africa",
         body:
             "From schools and government to private sector and NGOs, we co-design scalable digital delivery models that produce durable impact.",
-        image: "/visual-network.svg",
-        imageAlt: "Partnership delivery visual",
+        image: "/Building Practical Systems.png",
+        imageAlt: "Building Practical Systems With ADTL Africa",
         primaryCta: { href: "/partnership", label: "Start Partnership" },
         secondaryCta: { href: "/about", label: "Learn About ADTL" },
     },

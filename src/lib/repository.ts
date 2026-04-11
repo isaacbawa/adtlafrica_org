@@ -28,6 +28,7 @@ export type TeamMember = {
     name: string;
     role: string;
     bio: string;
+    image: string;
     linkedinUrl: string | null;
 };
 
@@ -82,6 +83,7 @@ const mockTeam: TeamMember[] = [
         name: "Mr. Barfour Frimpong",
         role: "Operations & Relations",
         bio: "Leads strategic partnerships and programme operations across ADTL Africa initiatives.",
+        image: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
         linkedinUrl: null,
     },
 ];
@@ -166,7 +168,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 
     try {
         const rows = (await db`
-        SELECT id, name, role, bio, linkedin_url AS "linkedinUrl"
+        SELECT id, name, role, bio, image, linkedin_url AS "linkedinUrl"
         FROM team_members
         ORDER BY display_order ASC, created_at DESC
       `) as TeamMember[];

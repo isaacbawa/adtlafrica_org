@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   },
   description:
     "Driving AI and digital transformation across Africa through practical systems, institutional partnerships, and capacity building.",
+  icons: {
+    icon: "/ADTL AFRICA_LOGO.png",
+    shortcut: "/ADTL AFRICA_LOGO.png",
+    apple: "/ADTL AFRICA_LOGO.png",
+  },
   openGraph: {
     title: "ADTL Africa",
     description:
@@ -47,11 +52,6 @@ export default function RootLayout({
             <SiteFooter />
           </div>
         </Providers>
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-        </div>
       </body>
     </html>
   );
