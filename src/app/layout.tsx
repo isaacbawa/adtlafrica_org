@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import { Public_Sans, Source_Serif_4 } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
+import { hasClerk } from "@/lib/env";
 import "./globals.css";
-
-const sans = Public_Sans({
-  variable: "--font-public-sans",
-  subsets: ["latin"],
-});
-
-const serif = Source_Serif_4({
-  variable: "--font-source-serif",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adtlafrica.org"),
@@ -43,11 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} h-full antialiased`}>
-      <body className="min-h-full bg-white text-ink">
-        <Providers>
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+      <body className="min-h-full bg-white text-ink" style={{ "fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" }}>
+        <Providers clerkEnabled={hasClerk}>
           <div className="flex min-h-screen flex-col">
-            <SiteHeader />
+            <SiteHeader clerkEnabled={hasClerk} />
             <div className="flex-1">{children}</div>
             <SiteFooter />
           </div>

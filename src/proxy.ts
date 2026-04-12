@@ -1,8 +1,10 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import type { NextRequest } from "next/server";
-import { env } from "@/lib/env";
+import { NextResponse, type NextRequest } from "next/server";
+import { hasClerk } from "@/lib/env";
 
-export default env.clerkSecretKey ? clerkMiddleware() : ((request: NextRequest) => { });
+const passthroughMiddleware = (_request: NextRequest) => NextResponse.next();
+
+export const proxy = hasClerk ? clerkMiddleware() : passthroughMiddleware;
 
 export const config = {
     matcher: [

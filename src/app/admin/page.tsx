@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { SectionShell } from "@/components/section-shell";
 import { getUserRole } from "@/lib/auth";
+import { hasClerk } from "@/lib/env";
 
 export const metadata: Metadata = {
     title: "Admin Dashboard",
@@ -11,6 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
+    if (!hasClerk) {
+        redirect("/");
+    }
+
     const { userId } = await auth();
 
     // Protect the admin page - must be signed in

@@ -16,7 +16,7 @@ type Slide = {
 
 const slides: Slide[] = [
     {
-        kicker: "Pan-African Mission Platform",
+        kicker: "",
         title: "Driving AI & Digital Transformation Across Africa",
         body:
             "We partner with institutions and clients to design practical systems, build real digital capability, and deliver measurable transformation outcomes.",
@@ -26,7 +26,7 @@ const slides: Slide[] = [
         secondaryCta: { href: "/partnership", label: "Partner With Us" },
     },
     {
-        kicker: "Flagship Programme",
+        kicker: "",
         title: "AI & Digital Skills Training Programme",
         body:
             "Our intensive cohort model equips participants with practical AI tool experience, live projects, mentorship, and implementation confidence.",
@@ -36,7 +36,7 @@ const slides: Slide[] = [
         secondaryCta: { href: "/resources", label: "Browse Resources" },
     },
     {
-        kicker: "Institutional Partnerships",
+        kicker: "",
         title: "Build Practical Systems With ADTL Africa",
         body:
             "From schools and government to private sector and NGOs, we co-design scalable digital delivery models that produce durable impact.",
