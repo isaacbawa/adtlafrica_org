@@ -2,34 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { UserButton, useAuth } from "@clerk/nextjs";
 import { primaryNavItems, utilityNavItems } from "@/lib/content";
 
 type SiteHeaderProps = {
     clerkEnabled: boolean;
 };
-
-function AuthButtons({ clerkEnabled }: SiteHeaderProps) {
-    const { isSignedIn } = useAuth();
-
-    if (!clerkEnabled) {
-        return null;
-    }
-
-    return (
-        <div className="flex items-center gap-2">
-            <UserButton afterSignOutUrl="/" />
-            {isSignedIn && (
-                <Link
-                    href="/admin"
-                    className="hidden border-b-2 border-transparent px-3 py-2 text-sm font-semibold text-ink hover:border-brand-primary hover:text-brand-primary sm:inline-block"
-                >
-                    Admin
-                </Link>
-            )}
-        </div>
-    );
-}
 
 export function SiteHeader({ clerkEnabled }: SiteHeaderProps) {
     return (
