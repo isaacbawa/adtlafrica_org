@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {
-    SignedIn,
-    SignedOut,
-    SignInButton,
-    SignUpButton,
-    UserButton,
-} from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import { primaryNavItems, utilityNavItems } from "@/lib/content";
 
 type SiteHeaderProps = {
@@ -22,28 +16,13 @@ function AuthButtons({ clerkEnabled }: SiteHeaderProps) {
 
     return (
         <div className="flex items-center gap-2">
-            <SignedOut>
-                <SignInButton mode="modal">
-                    <button type="button" className="btn-secondary">
-                        Sign In
-                    </button>
-                </SignInButton>
-                <SignUpButton mode="modal">
-                    <button type="button" className="btn-primary">
-                        Sign Up
-                    </button>
-                </SignUpButton>
-            </SignedOut>
-
-            <SignedIn>
-                <UserButton afterSignOutUrl="/" />
-                <Link
-                    href="/admin"
-                    className="hidden border-b-2 border-transparent px-3 py-2 text-sm font-semibold text-ink hover:border-brand-primary hover:text-brand-primary sm:inline-block"
-                >
-                    Admin
-                </Link>
-            </SignedIn>
+            <UserButton afterSignOutUrl="/" />
+            <Link
+                href="/admin"
+                className="hidden border-b-2 border-transparent px-3 py-2 text-sm font-semibold text-ink hover:border-brand-primary hover:text-brand-primary sm:inline-block"
+            >
+                Admin
+            </Link>
         </div>
     );
 }

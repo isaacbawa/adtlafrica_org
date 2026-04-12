@@ -1,10 +1,8 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { NextResponse, type NextRequest } from "next/server";
-import { hasClerk } from "@/lib/env";
 
-const passthroughMiddleware = (_request: NextRequest) => NextResponse.next();
-
-export const proxy = hasClerk ? clerkMiddleware() : passthroughMiddleware;
+// Use clerkMiddleware to attach auth context to requests
+// The middleware itself doesn't enforce protection - that's handled in individual routes
+export const proxy = clerkMiddleware();
 
 export const config = {
     matcher: [
