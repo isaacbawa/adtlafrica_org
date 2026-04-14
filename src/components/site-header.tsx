@@ -15,7 +15,7 @@ export function SiteHeader({ clerkEnabled }: SiteHeaderProps) {
             <div className="site-container flex items-center justify-between py-5">
                 <Link href="/" className="flex items-center gap-3" aria-label="ADTL Africa Home">
                     <Image
-                        src="/ADTL AFRICA_LOGO.png"
+                        src={siteAssetUrls.logo}
                         alt="ADTL Africa Logo"
                         width={60}
                         height={60}

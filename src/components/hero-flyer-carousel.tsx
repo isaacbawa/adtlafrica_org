@@ -20,7 +20,7 @@ const slides: Slide[] = [
         title: "Driving AI & Digital Transformation Across Africa",
         body:
             "We partner with institutions and clients to design practical systems, build real digital capability, and deliver measurable transformation outcomes.",
-        image: "/Africa AI & Digital Transformation.png",
+        image: "/Africa AI & Digital Transformation.jpg",
         imageAlt: "Africa AI & Digital Transformation",
         primaryCta: { href: "/services", label: "Explore Services" },
         secondaryCta: { href: "/partnership", label: "Partner With Us" },
@@ -30,7 +30,7 @@ const slides: Slide[] = [
         title: "AI & Digital Skills Training Programme",
         body:
             "Our intensive cohort model equips participants with practical AI tool experience, live projects, mentorship, and implementation confidence.",
-        image: "/Africa AI & Digital Transformation.png",
+        image: "/Africa AI & Digital Transformation.jpg",
         imageAlt: "Africa AI & Digital Transformation",
         primaryCta: { href: "/career", label: "View Opportunities" },
         secondaryCta: { href: "/resources", label: "Browse Resources" },
@@ -40,7 +40,7 @@ const slides: Slide[] = [
         title: "Build Practical Systems With ADTL Africa",
         body:
             "From schools and government to private sector and NGOs, we co-design scalable digital delivery models that produce durable impact.",
-        image: "/Africa AI & Digital Transformation.png",
+        image: "/Africa AI & Digital Transformation.jpg",
         imageAlt: "Africa AI & Digital Transformation",
         primaryCta: { href: "/partnership", label: "Start Partnership" },
         secondaryCta: { href: "/about", label: "Learn About ADTL" },
@@ -71,9 +71,9 @@ export function HeroFlyerCarousel() {
     }
 
     return (
-        <section className="border-b border-border py-12 md:py-16">
+        <section className="py-12 md:py-16">
             <div className="site-container">
-                <div className="rounded-lg border border-border bg-white p-4 md:p-6">
+                <div className="bg-white p-4 md:p-6">
                     <div className="grid items-stretch gap-6 lg:grid-cols-[1.08fr_0.92fr]">
                         <div className="order-2 lg:order-1">
                             <p className="section-kicker">{activeSlide.kicker}</p>
@@ -119,7 +119,7 @@ export function HeroFlyerCarousel() {
                                     className="h-auto w-full"
                                 />
 
-                                <div className="absolute bottom-3 right-3 flex items-center gap-2">
+                                {/* <div className="absolute bottom-3 right-3 flex items-center gap-2">
                                     <button
                                         type="button"
                                         onClick={previous}
@@ -136,7 +136,7 @@ export function HeroFlyerCarousel() {
                                     >
                                         Next
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ export default async function OurPeoplePage() {
                 intro="A multidisciplinary team focused on implementation quality, measurable outcomes, and trusted partnerships."
             >
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    {team.map((member) => (
+                    {team.map((member, index) => (
                         <article key={member.id} className="info-card overflow-hidden flex flex-col">
                             <div className="flex-shrink-0 mb-4 aspect-[4/5] w-full relative">
                                 <Image
@@ -28,14 +28,14 @@ export default async function OurPeoplePage() {
                                     sizes="(max-width: 768px) 100vw, 300px"
                                     className="rounded-lg object-cover w-full h-full border-2 border-border select-none"
                                     style={{ objectFit: 'cover', objectPosition: 'center', imageRendering: 'auto' }}
-                                    quality={100}
-                                    priority
+                                    quality={80}
+                                    priority={index < 3}
                                 />
                             </div>
                             <div className="flex-1 flex flex-col">
                                 <h3 className="text-xl font-semibold text-ink">{member.name}</h3>
                                 <p className="mt-1 text-sm font-semibold text-brand-primary">{member.role}</p>
-                                <p className="mt-3 text-sm text-muted leading-6 flex-1">{member.bio}</p>
+                                {/* <p className="mt-3 text-sm text-muted leading-6 flex-1">{member.bio}</p> */}
 
                                 {member.linkedinUrl ? (
                                     <a

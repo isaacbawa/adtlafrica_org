@@ -12,7 +12,7 @@ export default function Home() {
     <main>
       <HeroFlyerCarousel />
 
-      <section className="border-b border-border py-16">
+      {/* <section className="border-b border-border py-16">
         <div className="site-container grid gap-5 md:grid-cols-4">
           <div className="info-card">
             <p className="text-4xl font-semibold text-ink md:text-5xl">3</p>
@@ -31,7 +31,7 @@ export default function Home() {
             <p className="mt-2 text-base text-muted">Clear Mission for Digital Inclusion</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <SectionShell
         title="Who We Are"

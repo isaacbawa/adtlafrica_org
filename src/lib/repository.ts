@@ -94,6 +94,12 @@ const linkedin_isaacbawa = "https://www.linkedin.com/in/isaacbawangisah/";
 const linkedin_wisdomkordah = "https://www.linkedin.com/in/wisdom-kordah/";
 const linkedin_barfour = "https://www.linkedin.com/in/barfourfrimpong/";
 
+// Generic placeholder for team members with missing image or LinkedIn URL
+const GENERIC_TEAM_PLACEHOLDER = {
+    image: teamPlaceholderImage,
+    linkedinUrl: null as string | null,
+};
+
 // Default institutional roster used until the admin-managed team directory is fully populated.
 const mockTeam: TeamMember[] = [
     {
@@ -148,16 +154,16 @@ const mockTeam: TeamMember[] = [
 
 function withDefaultTeamMembers(members: TeamMemberRecord[]): TeamMember[] {
     const fallbackByName = new Map(mockTeam.map((member) => [member.name.toLowerCase(), member]));
-    const normalized = members.map((member, index) => {
-        const fallback = fallbackByName.get(member.name.toLowerCase()) ?? mockTeam[index % mockTeam.length];
+    const normalized = members.map((member) => {
+        const fallback = fallbackByName.get(member.name.toLowerCase());
 
         return {
             id: member.id,
             name: member.name,
             role: member.role,
             bio: member.bio,
-            image: member.image?.trim() || fallback.image,
-            linkedinUrl: member.linkedinUrl ?? fallback.linkedinUrl,
+            image: member.image?.trim() || GENERIC_TEAM_PLACEHOLDER.image,
+            linkedinUrl: member.linkedinUrl ?? GENERIC_TEAM_PLACEHOLDER.linkedinUrl,
         };
     });
 
