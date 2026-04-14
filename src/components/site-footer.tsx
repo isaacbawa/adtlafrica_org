@@ -11,12 +11,13 @@ export function SiteFooter() {
                         Driving AI and digital transformation across Africa through practical systems, partnerships,
                         and capacity building.
                     </p>
+
                 </div>
 
                 <div>
                     <h2 className="text-base font-semibold uppercase tracking-[0.12em] text-muted">Contact</h2>
                     <ul className="mt-3 space-y-2 text-base text-ink">
-                        <li>Mr. Barfour Frimpong - Operations & Relations</li>
+                        <li>Barfour Frimpong - Operations & Relations</li>
                         <li>+233 592 413 228</li>
                         <li>info@adtlafrica.org</li>
                     </ul>

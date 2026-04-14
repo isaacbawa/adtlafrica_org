@@ -18,7 +18,7 @@ export default function ContactPage() {
                     <div className="surface-panel rounded-md p-6 md:p-7">
                         <p className="section-kicker">Direct Contact</p>
                         <div className="mt-4 space-y-3 text-lg leading-8 text-ink">
-                            <p>Mr. Barfour Frimpong - Operations & Relations</p>
+                            <p>Barfour Frimpong - Operations & Relations</p>
                             <p>+233 592 413 228</p>
                             <p>info@adtlafrica.org</p>
                         </div>

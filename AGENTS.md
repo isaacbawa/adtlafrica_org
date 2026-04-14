@@ -498,7 +498,7 @@ Ready to Partner
 With Us?
 Join us in transforming Africa's digital future —
 one learner, one institution, one system at a time.
-Mr. Barfour Frimpong — Operations & Relations
+Barfour Frimpong — Operations & Relations
 0592413228
 info@adtlafrica.com
 www.adtlafrica.org

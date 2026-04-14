@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { primaryNavItems, utilityNavItems } from "@/lib/content";
+import { siteAssetUrls } from "@/lib/site-assets";
 
 type SiteHeaderProps = {
     clerkEnabled: boolean;

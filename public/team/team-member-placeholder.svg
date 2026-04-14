@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">Team member placeholder portrait</title>
+  <desc id="desc">A minimal placeholder portrait for an ADTL Africa team member profile.</desc>
+  <rect width="400" height="400" fill="#f5f2ec" />
+  <circle cx="200" cy="150" r="68" fill="#d7dde2" />
+  <path d="M92 340c0-63 48-112 108-112s108 49 108 112v24H92z" fill="#1f4e79" />
+  <circle cx="200" cy="146" r="50" fill="#edf1f4" />
+</svg>

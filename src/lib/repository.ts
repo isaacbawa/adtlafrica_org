@@ -1,5 +1,6 @@
 import { getDb } from "@/lib/db";
 import { serverLogger } from "@/lib/server-logger";
+// import { siteAssetUrls } from "@/lib/site-assets";
 
 export type BlogPost = {
     id: number;
@@ -30,6 +31,10 @@ export type TeamMember = {
     bio: string;
     image: string;
     linkedinUrl: string | null;
+};
+
+type TeamMemberRecord = Omit<TeamMember, "image"> & {
+    image?: string | null;
 };
 
 export type JobListing = {
@@ -77,16 +82,105 @@ const mockResources: ResourceItem[] = [
     },
 ];
 
+const teamPlaceholderImage = "/team/team-member-placeholder.svg";
+const isaacbawa = "/team/Isaac Bawa Ngisah.jpg";
+const wisdomkordoh = "/team/Wisdom Kordah.jpg";
+const barfourfrimpong = "/team/Barfour Frimpong.jpg";
+const mercy = "/team/Mercy Namoe-kan Nassam.jpg";
+const Raymondosei = "/team/Raymond Osei.jpg";
+const josephineyeboah = "/team/Josephine Yeboah.jpg";
+
+const linkedin_isaacbawa = "https://www.linkedin.com/in/isaacbawangisah/";
+const linkedin_wisdomkordah = "https://www.linkedin.com/in/wisdom-kordah/";
+const linkedin_barfour = "https://www.linkedin.com/in/barfourfrimpong/";
+
+// Default institutional roster used until the admin-managed team directory is fully populated.
 const mockTeam: TeamMember[] = [
     {
         id: 1,
-        name: "Mr. Barfour Frimpong",
+        name: "Barfour Frimpong",
         role: "Operations & Relations",
-        bio: "Leads strategic partnerships and programme operations across ADTL Africa initiatives.",
-        image: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+        bio: "Leads strategic partnerships, programme delivery coordination, and stakeholder engagement across ADTL Africa initiatives.",
+        image: barfourfrimpong,
+        linkedinUrl: linkedin_barfour,
+    },
+    {
+        id: 2,
+        name: "Josephine Yeboah",
+        role: "Intern",
+        bio: "Oversees cross-sector programme design, partnership development, and institutional collaboration for implementation across Africa.",
+        image: josephineyeboah,
+        linkedinUrl: null,
+    },
+    {
+        id: 3,
+        name: "Isaac Bawa Ngisah",
+        role: "Tech Lead, Senior Software Developer",
+        bio: "Leads technical architecture, software delivery, and engineering quality across ADTL Africa's digital platforms and implementation work.",
+        image: isaacbawa,
+        linkedinUrl: linkedin_isaacbawa,
+    },
+    {
+        id: 4,
+        name: "Raymond Osei",
+        role: "Learning Experience Manager",
+        bio: "Coordinates cohort-based training delivery, mentor support, and learner experience across ADTL Africa's skills programmes.",
+        image: Raymondosei,
+        linkedinUrl: null,
+    },
+    {
+        id: 5,
+        name: "Wisdom Kordah",
+        role: "Software Engineer",
+        bio: "Builds dashboards, reporting systems, and measurement frameworks that turn programme data into actionable decision support.",
+        image: wisdomkordoh,
+        linkedinUrl: linkedin_wisdomkordah,
+    },
+    {
+        id: 6,
+        name: "Mercy Namoe-kan Nassam",
+        role: "Secretary",
+        bio: "Supports outreach, partner communication, and community engagement to strengthen trust, visibility, and programme participation.",
+        image: teamPlaceholderImage,
         linkedinUrl: null,
     },
 ];
+
+function withDefaultTeamMembers(members: TeamMemberRecord[]): TeamMember[] {
+    const fallbackByName = new Map(mockTeam.map((member) => [member.name.toLowerCase(), member]));
+    const normalized = members.map((member, index) => {
+        const fallback = fallbackByName.get(member.name.toLowerCase()) ?? mockTeam[index % mockTeam.length];
+
+        return {
+            id: member.id,
+            name: member.name,
+            role: member.role,
+            bio: member.bio,
+            image: member.image?.trim() || fallback.image,
+            linkedinUrl: member.linkedinUrl ?? fallback.linkedinUrl,
+        };
+    });
+
+    if (normalized.length >= mockTeam.length) {
+        return normalized;
+    }
+
+    const usedNames = new Set(normalized.map((member) => member.name.toLowerCase()));
+    let nextId = normalized.reduce((maxId, member) => Math.max(maxId, member.id), 0) + 1;
+
+    for (const fallbackMember of mockTeam) {
+        if (usedNames.has(fallbackMember.name.toLowerCase())) {
+            continue;
+        }
+
+        normalized.push({
+            ...fallbackMember,
+            id: nextId++,
+        });
+    }
+
+    return normalized;
+}
 
 const mockJobs: JobListing[] = [
     {
@@ -167,12 +261,25 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     }
 
     try {
-        const rows = (await db`
-        SELECT id, name, role, bio, image, linkedin_url AS "linkedinUrl"
-        FROM team_members
-        ORDER BY display_order ASC, created_at DESC
-      `) as TeamMember[];
-        return rows;
+        try {
+            const rows = (await db`
+            SELECT id, name, role, bio, profile_image_url AS "image", linkedin_url AS "linkedinUrl"
+            FROM team_members
+            ORDER BY display_order ASC, created_at DESC
+          `) as TeamMemberRecord[];
+
+            return withDefaultTeamMembers(rows);
+        } catch (error) {
+            serverLogger.warn("Team query using profile_image_url failed, retrying legacy image column", error);
+
+            const rows = (await db`
+            SELECT id, name, role, bio, image, linkedin_url AS "linkedinUrl"
+            FROM team_members
+            ORDER BY display_order ASC, created_at DESC
+          `) as TeamMemberRecord[];
+
+            return withDefaultTeamMembers(rows);
+        }
     } catch (error) {
         serverLogger.error("Database query failed, falling back to mock data", error);
         return mockTeam;
