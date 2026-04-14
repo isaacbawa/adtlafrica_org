@@ -147,7 +147,7 @@ const mockTeam: TeamMember[] = [
         name: "Mercy Namoe-kan Nassam",
         role: "Secretary",
         bio: "Supports outreach, partner communication, and community engagement to strengthen trust, visibility, and programme participation.",
-        image: teamPlaceholderImage,
+        image: mercy,
         linkedinUrl: null,
     },
 ];

@@ -12,20 +12,20 @@ type SiteHeaderProps = {
 export function SiteHeader({ clerkEnabled }: SiteHeaderProps) {
     return (
         <header className="sticky top-0 z-50 border-b border-border bg-white shadow-sm">
-            <div className="site-container flex items-center justify-between py-5">
+            <div className="site-container flex items-center justify-between py-3.5">
                 <Link href="/" className="flex items-center gap-3" aria-label="ADTL Africa Home">
                     <Image
                         src={siteAssetUrls.logo}
                         alt="ADTL Africa Logo"
-                        width={60}
-                        height={60}
-                        className="h-12 w-auto"
-                        priority
+                        width={220}
+                        height={130}
+                        className="h-20 w-auto p-0 m-0"
+                        priority={true}
                     />
-                    <div>
+                    {/* <div>
                         <p className="text-2xl font-semibold leading-none tracking-wide text-ink">ADTL</p>
                         <p className="mt-1 text-sm text-muted">AI & Digital Transformative Lab</p>
-                    </div>
+                    </div> */}
                 </Link>
 
                 <div className="flex items-center gap-4">

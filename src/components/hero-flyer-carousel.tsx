@@ -114,7 +114,7 @@ export function HeroFlyerCarousel() {
                                     alt={activeSlide.imageAlt}
                                     width={960}
                                     height={640}
-                                    priority
+                                    priority={true}
                                     sizes="(max-width: 768px) 100vw, 46vw"
                                     className="h-auto w-full"
                                 />

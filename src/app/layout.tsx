@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   description:
     "Driving AI and digital transformation across Africa through practical systems, institutional partnerships, and capacity building.",
   icons: {
-    icon: "/ADTL AFRICA_LOGO.png",
-    shortcut: "/ADTL AFRICA_LOGO.png",
-    apple: "/ADTL AFRICA_LOGO.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
     title: "ADTL Africa",
@@ -24,6 +24,14 @@ export const metadata: Metadata = {
       "Driving AI and digital transformation across Africa through practical systems, institutional partnerships, and capacity building.",
     type: "website",
     url: "https://adtlafrica.org",
+    images: [
+      {
+        url: "/Logo ADTL Africa.png",
+        width: 1200,
+        height: 630,
+        alt: "ADTL Africa Logo",
+      },
+    ],
   },
 };
 
