@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { hasClerk } from "@/lib/env";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adtlafrica.org"),
@@ -42,6 +43,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        <Analytics />
+      </head>
       <body className="min-h-full bg-white text-ink" style={{ "fontFamily": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" }}>
         <Providers clerkEnabled={hasClerk}>
           <div className="flex min-h-screen flex-col">

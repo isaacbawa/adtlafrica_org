@@ -11,25 +11,12 @@
   --surface-soft: #f8f8f6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-public-sans);
-  --font-serif: var(--font-source-serif);
-  --color-brand-primary: var(--brand-primary);
-  --color-brand-primary-strong: var(--brand-primary-strong);
-  --color-ink: var(--ink);
-  --color-muted: var(--ink-soft);
-  --color-border: var(--border);
-  --color-surface-soft: var(--surface-soft);
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-public-sans), sans-serif;
   font-size: 18px;
-  line-height: 1.65;
+  line-height: 0.9;
   letter-spacing: -0.01em;
 }
 
@@ -121,7 +108,7 @@ button {
   color: #fff;
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 0.7rem 1.2rem;
+  padding: 0.5rem 0.8rem;
 }
 
 .btn-primary:hover {
@@ -134,7 +121,7 @@ button {
   color: var(--ink);
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 0.7rem 1.2rem;
+  padding: 0.5rem 0.8rem;
   background: #fff;
 }
 

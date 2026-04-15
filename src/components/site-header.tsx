@@ -18,8 +18,8 @@ export function SiteHeader({ clerkEnabled }: SiteHeaderProps) {
                         src={siteAssetUrls.logo}
                         alt="ADTL Africa Logo"
                         width={220}
-                        height={130}
-                        className="h-20 w-auto p-0 m-0"
+                        height={100}
+                        className="h-16 w-auto p-0 m-0"
                         priority={true}
                     />
                     {/* <div>

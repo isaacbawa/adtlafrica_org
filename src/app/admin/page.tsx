@@ -12,19 +12,21 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
+    // If Clerk is not configured, redirect to home
     if (!hasClerk) {
         redirect("/");
     }
 
     const { userId } = await auth();
 
-    // Protect the admin page - must be signed in
+    // If not signed in, redirect to sign-in
     if (!userId) {
-        redirect("/");
+        redirect("/sign-in");
     }
 
+    // Check if user has admin role
     const role = await getUserRole();
-    if (role !== "admin" && role !== "editor") {
+    if (role !== "admin") {
         redirect("/");
     }
 
@@ -37,9 +39,9 @@ export default async function AdminPage() {
                 <ul className="grid gap-4 md:grid-cols-2">
                     <li className="info-card">
                         <h3 className="text-2xl font-semibold text-ink">Blog Management</h3>
-                        <p className="card-body">Create, edit, publish, unpublish, and delete blog posts.</p>
-                        <Link href="/api/blog" className="mt-4 inline-block text-base font-semibold text-brand-primary">
-                            API Endpoint
+                        <p className="card-body">Create, edit, publish, unpublish, and delete blog posts with rich text editor.</p>
+                        <Link href="/admin/blog" className="mt-4 inline-block text-base font-semibold text-brand-primary">
+                            Manage Posts →
                         </Link>
                     </li>
                     <li className="info-card">

@@ -8,10 +8,14 @@ export type BlogPost = {
     slug: string;
     summary: string;
     body: string;
+    featuredImage?: string | null;
+    featuredImageAlt?: string | null;
+    contentHtml?: string;
     seoTitle: string;
     seoDescription: string;
     published: boolean;
     createdAt: string;
+    updatedAt?: string;
 };
 
 export type ResourceItem = {
@@ -200,43 +204,69 @@ const mockJobs: JobListing[] = [
     },
 ];
 
-export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
     const db = getDb();
     if (!db) {
-        return mockBlog;
+        serverLogger.error("Database not available for getAllBlogPosts");
+        return [];
     }
 
     try {
-        const rows = (await db`
-        SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
-        FROM blog_posts
-        WHERE published = TRUE
-        ORDER BY created_at DESC
-      `) as BlogPost[];
-        return rows;
+        const rows = await db`
+            SELECT id, title, slug, summary, body, featured_image AS "featuredImage", featured_image_alt AS "featuredImageAlt", 
+                   content_html AS "contentHtml", seo_title AS "seoTitle", seo_description AS "seoDescription", 
+                   published, created_at AS "createdAt", updated_at AS "updatedAt"
+            FROM blog_posts
+            ORDER BY created_at DESC
+        `;
+        return rows as BlogPost[];
     } catch (error) {
-        serverLogger.error("Database query failed, falling back to mock data", error);
-        return mockBlog;
+        serverLogger.error("Database query failed in getAllBlogPosts:", error);
+        throw error;
+    }
+}
+
+export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
+    const db = getDb();
+    if (!db) {
+        serverLogger.error("Database not available for getPublishedBlogPosts");
+        return [];
+    }
+
+    try {
+        const rows = await db`
+            SELECT id, title, slug, summary, body, featured_image AS "featuredImage", featured_image_alt AS "featuredImageAlt",
+                   content_html AS "contentHtml", seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
+            FROM blog_posts
+            WHERE published = TRUE
+            ORDER BY created_at DESC
+        `;
+        return rows as BlogPost[];
+    } catch (error) {
+        serverLogger.error("Database query failed in getPublishedBlogPosts:", error);
+        throw error;
     }
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
     const db = getDb();
     if (!db) {
-        return mockBlog.find((post) => post.slug === slug) ?? null;
+        serverLogger.error("Database not available for getBlogPostBySlug");
+        return null;
     }
 
     try {
         const rows = (await db`
-        SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
-        FROM blog_posts
-        WHERE slug = ${slug} AND published = TRUE
-        LIMIT 1
-      `) as BlogPost[];
-        return rows[0] ?? null;
+            SELECT id, title, slug, summary, body, featured_image AS "featuredImage", featured_image_alt AS "featuredImageAlt",
+                   content_html AS "contentHtml", seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
+            FROM blog_posts
+            WHERE slug = ${slug} AND published = TRUE
+            LIMIT 1
+        `) as BlogPost[];
+        return rows.length > 0 ? rows[0] : null;
     } catch (error) {
-        serverLogger.error("Database query failed, falling back to mock data", error);
-        return mockBlog.find((post) => post.slug === slug) ?? null;
+        serverLogger.error("Database query failed in getBlogPostBySlug:", error);
+        throw error;
     }
 }
 

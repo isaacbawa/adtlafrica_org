@@ -20,7 +20,7 @@ export default async function OurPeoplePage() {
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {team.map((member, index) => (
                         <article key={member.id} className="info-card overflow-hidden flex flex-col">
-                            <div className="flex-shrink-0 mb-4 aspect-[4/5] w-full relative">
+                            <div className="shrink-0 mb-4 aspect-4/5 w-full relative">
                                 <Image
                                     src={member.image}
                                     alt={member.name}
@@ -28,7 +28,7 @@ export default async function OurPeoplePage() {
                                     sizes="(max-width: 768px) 100vw, 300px"
                                     className="rounded-lg object-cover w-full h-full border-2 border-border select-none"
                                     style={{ objectFit: 'cover', objectPosition: 'center', imageRendering: 'auto' }}
-                                    quality={80}
+                                    quality={100}
                                     priority={index < 3}
                                 />
                             </div>

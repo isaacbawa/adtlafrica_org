@@ -1,53 +1,19 @@
-import type { NextRequest } from "next/server";
-import { assertRole } from "@/lib/auth";
-import { getDb } from "@/lib/db";
-import { jsonError } from "@/lib/http";
-import { blogCreateSchema } from "@/lib/validation";
+/*
+ * This route file is NOT functional and exists only for structural purposes.
+ * Slug-based blog post lookups are handled directly in: blog/[slug]/page.tsx
+ * Individual blog post operations (GET, PUT, DELETE by ID) are located at:
+ * /api/blog-post/[id] - Use this endpoint instead
 
-const blogUpdateSchema = blogCreateSchema.partial();
+ * REST API Map:
+ * - GET    /api/blog              - List published blogs (public) or all blogs (admin/editor)
+ * - POST   /api/blog              - Create new blog post (admin/editor only)
+ * - GET    /api/blog-post/[id]    - Get specific blog post by ID
+ * - PUT    /api/blog-post/[id]    - Update specific blog post (admin/editor only)
+ * - DELETE /api/blog-post/[id]    - Delete specific blog post (admin only)
+ */
 
-type Context = {
-    params: Promise<{ slug: string }>;
-};
+export const dynamic = "force-static";
 
-export async function GET(_request: NextRequest, context: Context) {
-    const { slug } = await context.params;
-    const db = getDb();
-    if (!db) {
-        return jsonError("Database is not configured.", 500);
-    }
-
-    const { role } = await assertRole(["admin", "editor"]);
-    const rows = (role === "public"
-        ? await db`
-        SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
-        FROM blog_posts
-        WHERE slug = ${slug} AND published = TRUE
-        LIMIT 1
-      `
-        : await db`
-        SELECT id, title, slug, summary, body, seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
-        FROM blog_posts
-        WHERE slug = ${slug}
-        LIMIT 1
-      `) as {
-            id: number;
-            title: string;
-            slug: string;
-            summary: string;
-            body: string;
-            seoTitle: string;
-            seoDescription: string;
-            published: boolean;
-            createdAt: string;
-        }[];
-
-    if (!rows[0]) {
-        return jsonError("Not found.", 404);
-    }
-
-    return Response.json(rows[0]);
-}
 
 export async function PATCH(request: NextRequest, context: Context) {
     const permission = await assertRole(["admin", "editor"]);
