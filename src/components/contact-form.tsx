@@ -38,43 +38,43 @@ export function ContactForm() {
     }
 
     return (
-        <form onSubmit={onSubmit} className="form-shell space-y-5">
+        <form onSubmit={onSubmit} className="form-shell space-y-4 sm:space-y-5">
             <label className="block">
-                <span className="field-label">Name</span>
+                <span className="field-label text-xs sm:text-sm">Name</span>
                 <input
                     required
                     value={form.name}
                     onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 />
             </label>
             <label className="block">
-                <span className="field-label">Email</span>
+                <span className="field-label text-xs sm:text-sm">Email</span>
                 <input
                     required
                     type="email"
                     value={form.email}
                     onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 />
             </label>
             <label className="block">
-                <span className="field-label">Subject</span>
+                <span className="field-label text-xs sm:text-sm">Subject</span>
                 <input
                     required
                     value={form.subject}
                     onChange={(event) => setForm((prev) => ({ ...prev, subject: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 />
             </label>
             <label className="block">
-                <span className="field-label">Message</span>
+                <span className="field-label text-xs sm:text-sm">Message</span>
                 <textarea
                     required
-                    rows={6}
+                    rows={5}
                     value={form.message}
                     onChange={(event) => setForm((prev) => ({ ...prev, message: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 />
             </label>
 
@@ -91,11 +91,11 @@ export function ContactForm() {
             <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary disabled:opacity-60"
+                className="btn-primary w-full sm:w-auto disabled:opacity-60 text-xs sm:text-sm"
             >
                 {loading ? "Sending..." : "Send Message"}
             </button>
-            {status ? <p className="text-base text-muted">{status}</p> : null}
+            {status ? <p className="text-xs sm:text-sm text-ink-soft">{status}</p> : null}
         </form>
     );
 }

@@ -30,25 +30,25 @@ export function NewsletterForm() {
     }
 
     return (
-        <form id="newsletter" onSubmit={onSubmit} className="space-y-3">
-            <label className="field-label" htmlFor="newsletter-email">
+        <form id="newsletter" onSubmit={onSubmit} className="space-y-2 sm:space-y-3">
+            <label className="field-label text-xs sm:text-sm" htmlFor="newsletter-email">
                 Email address
             </label>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-2 sm:gap-3 sm:flex-row">
                 <input
                     id="newsletter-email"
-                    className="field-input mt-0"
+                    className="field-input mt-0 text-xs sm:text-sm flex-1 sm:flex-auto"
                     type="email"
                     required
                     placeholder="name@organization.org"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
-                <button className="btn-primary sm:self-start" type="submit" disabled={loading}>
+                <button className="btn-primary text-xs sm:text-sm sm:self-start whitespace-nowrap" type="submit" disabled={loading}>
                     {loading ? "Submitting..." : "Subscribe"}
                 </button>
             </div>
-            {status ? <p className="text-sm text-muted">{status}</p> : null}
+            {status ? <p className="text-xs sm:text-sm text-ink-soft">{status}</p> : null}
         </form>
     );
 }

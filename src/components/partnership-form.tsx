@@ -40,53 +40,53 @@ export function PartnershipForm() {
     }
 
     return (
-        <form onSubmit={onSubmit} className="form-shell space-y-5">
+        <form onSubmit={onSubmit} className="form-shell space-y-4 sm:space-y-5">
             <label className="block">
-                <span className="field-label">Organization Name</span>
+                <span className="field-label text-xs sm:text-sm">Organization Name</span>
                 <input
                     required
                     value={form.organizationName}
                     onChange={(event) => setForm((prev) => ({ ...prev, organizationName: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 />
             </label>
             <label className="block">
-                <span className="field-label">Contact Person</span>
+                <span className="field-label text-xs sm:text-sm">Contact Person</span>
                 <input
                     required
                     value={form.contactPerson}
                     onChange={(event) => setForm((prev) => ({ ...prev, contactPerson: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 />
             </label>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
                 <label className="block">
-                    <span className="field-label">Email</span>
+                    <span className="field-label text-xs sm:text-sm">Email</span>
                     <input
                         required
                         type="email"
                         value={form.email}
                         onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-                        className="field-input"
+                        className="field-input text-sm sm:text-base"
                     />
                 </label>
                 <label className="block">
-                    <span className="field-label">Phone</span>
+                    <span className="field-label text-xs sm:text-sm">Phone</span>
                     <input
                         required
                         placeholder="+233..."
                         value={form.phone}
                         onChange={(event) => setForm((prev) => ({ ...prev, phone: event.target.value }))}
-                        className="field-input"
+                        className="field-input text-sm sm:text-base"
                     />
                 </label>
             </div>
             <label className="block">
-                <span className="field-label">Partnership Type</span>
+                <span className="field-label text-xs sm:text-sm">Partnership Type</span>
                 <select
                     value={form.partnershipType}
                     onChange={(event) => setForm((prev) => ({ ...prev, partnershipType: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 >
                     <option value="institutions">Institutions</option>
                     <option value="government">Government</option>
@@ -94,13 +94,13 @@ export function PartnershipForm() {
                 </select>
             </label>
             <label className="block">
-                <span className="field-label">Message</span>
+                <span className="field-label text-xs sm:text-sm">Message</span>
                 <textarea
                     required
-                    rows={6}
+                    rows={5}
                     value={form.message}
                     onChange={(event) => setForm((prev) => ({ ...prev, message: event.target.value }))}
-                    className="field-input"
+                    className="field-input text-sm sm:text-base"
                 />
             </label>
             <input
@@ -115,11 +115,11 @@ export function PartnershipForm() {
             <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary disabled:opacity-60"
+                className="btn-primary w-full sm:w-auto disabled:opacity-60 text-xs sm:text-sm"
             >
                 {loading ? "Submitting..." : "Submit Partnership Request"}
             </button>
-            {status ? <p className="text-base text-muted">{status}</p> : null}
+            {status ? <p className="text-xs sm:text-sm text-ink-soft">{status}</p> : null}
         </form>
     );
 }

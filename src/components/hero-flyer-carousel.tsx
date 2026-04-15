@@ -71,35 +71,35 @@ export function HeroFlyerCarousel() {
     }
 
     return (
-        <section className="py-12 md:py-16">
+        <section className="py-8 sm:py-10 md:py-12 lg:py-16">
             <div className="site-container">
-                <div className="bg-white p-4 md:p-6">
-                    <div className="grid items-stretch gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+                <div className="bg-white p-3 sm:p-4 md:p-6">
+                    <div className="grid items-stretch gap-4 sm:gap-5 md:gap-6 grid-cols-1 lg:grid-cols-[1.08fr_0.92fr]">
                         <div className="order-2 lg:order-1">
                             <p className="section-kicker">{activeSlide.kicker}</p>
-                            <h1 className="mt-4 text-4xl leading-tight text-ink md:text-6xl md:leading-[1.05]">
+                            <h1 className="mt-2 sm:mt-3 md:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-6xl leading-snug md:leading-tight lg:leading-[1.05] text-ink">
                                 {activeSlide.title}
                             </h1>
-                            <p className="mt-5 max-w-3xl text-lg leading-8 text-muted md:text-xl md:leading-9">
+                            <p className="mt-3 sm:mt-4 md:mt-5 max-w-3xl text-xs sm:text-sm md:text-base lg:text-lg leading-5 sm:leading-6 md:leading-7 lg:leading-8 text-ink-soft">
                                 {activeSlide.body}
                             </p>
 
-                            <div className="mt-7 flex flex-wrap gap-3">
-                                <Link href={activeSlide.primaryCta.href} className="btn-primary">
+                            <div className="mt-5 sm:mt-6 md:mt-7 flex flex-wrap gap-2 sm:gap-3">
+                                <Link href={activeSlide.primaryCta.href} className="btn-primary text-xs sm:text-sm">
                                     {activeSlide.primaryCta.label}
                                 </Link>
-                                <Link href={activeSlide.secondaryCta.href} className="btn-secondary">
+                                <Link href={activeSlide.secondaryCta.href} className="btn-secondary text-xs sm:text-sm">
                                     {activeSlide.secondaryCta.label}
                                 </Link>
                             </div>
 
-                            <div className="mt-7 flex items-center gap-2">
+                            <div className="mt-5 sm:mt-6 md:mt-7 flex items-center gap-1.5 sm:gap-2">
                                 {slides.map((slide, index) => (
                                     <button
                                         key={slide.title}
                                         type="button"
                                         onClick={() => setActiveIndex(index)}
-                                        className={`h-2.5 rounded-full transition-all ${index === activeIndex ? "w-8 bg-brand-primary" : "w-2.5 bg-border hover:bg-brand-primary"}`}
+                                        className={`rounded-full transition-all ${index === activeIndex ? "h-2 w-6 sm:w-8 bg-brand-primary" : "h-2 w-2 sm:w-2.5 bg-border hover:bg-brand-primary"}`}
                                         aria-label={`Go to slide ${index + 1}`}
                                         aria-current={index === activeIndex}
                                     />
@@ -118,25 +118,6 @@ export function HeroFlyerCarousel() {
                                     sizes="(max-width: 768px) 100vw, 46vw"
                                     className="h-auto w-full"
                                 />
-
-                                {/* <div className="absolute bottom-3 right-3 flex items-center gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={previous}
-                                        className="rounded-sm border border-border bg-white/95 px-3 py-2 text-sm font-semibold text-ink hover:border-brand-primary hover:text-brand-primary"
-                                        aria-label="Previous flyer"
-                                    >
-                                        Prev
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={next}
-                                        className="rounded-sm border border-border bg-white/95 px-3 py-2 text-sm font-semibold text-ink hover:border-brand-primary hover:text-brand-primary"
-                                        aria-label="Next flyer"
-                                    >
-                                        Next
-                                    </button>
-                                </div> */}
                             </div>
                         </div>
                     </div>

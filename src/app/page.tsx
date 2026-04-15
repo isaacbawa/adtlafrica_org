@@ -12,64 +12,49 @@ export default function Home() {
     <main>
       <HeroFlyerCarousel />
 
-      {/* <section className="border-b border-border py-16">
-        <div className="site-container grid gap-5 md:grid-cols-4">
-          <div className="info-card">
-            <p className="text-4xl font-semibold text-ink md:text-5xl">3</p>
-            <p className="mt-2 text-base text-muted">Strategic Focus Areas</p>
-          </div>
-          <div className="info-card">
-            <p className="text-4xl font-semibold text-ink md:text-5xl">6</p>
-            <p className="mt-2 text-base text-muted">Service Specialties</p>
-          </div>
-          <div className="info-card">
-            <p className="text-4xl font-semibold text-ink md:text-5xl">100</p>
-            <p className="mt-2 text-base text-muted">Participants per Cohort</p>
-          </div>
-          <div className="info-card">
-            <p className="text-4xl font-semibold text-ink md:text-5xl">1</p>
-            <p className="mt-2 text-base text-muted">Clear Mission for Digital Inclusion</p>
-          </div>
-        </div>
-      </section> */}
-
       <SectionShell
         title="Who We Are"
         intro="A not-for-profit, innovation-led platform focused on inclusive and practical digital transformation across the continent."
       >
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">Not-for-Profit</h3>
-            <p className="mt-3 text-base leading-8 text-muted">Social impact over profit, with inclusive services across society.</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">Not-for-Profit</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
+              Social impact over profit, with inclusive services across society.
+            </p>
           </article>
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">Pan-African</h3>
-            <p className="mt-3 text-base leading-8 text-muted">Bridging digital skills gaps across youth, communities, and institutions.</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">Pan-African</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
+              Bridging digital skills gaps across youth, communities, and institutions.
+            </p>
           </article>
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">Innovation-Led</h3>
-            <p className="mt-3 text-base leading-8 text-muted">Solutions grounded in operational realities and implementation outcomes.</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">Innovation-Led</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
+              Solutions grounded in operational realities and implementation outcomes.
+            </p>
           </article>
         </div>
       </SectionShell>
 
       <SectionShell title="Core Focus Areas">
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">SME Digital Transformation</h3>
-            <p className="mt-3 text-base leading-8 text-muted">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">SME Digital Transformation</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
               Web systems, AI workflows, dashboards, and digital infrastructure for growth-stage organizations.
             </p>
           </article>
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">Education & Capacity Building</h3>
-            <p className="mt-3 text-base leading-8 text-muted">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">Education & Capacity Building</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
               Youth training, teacher integration programmes, cohort learning, and certification pathways.
             </p>
           </article>
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">AI Integration & Automation</h3>
-            <p className="mt-3 text-base leading-8 text-muted">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">AI Integration & Automation</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
               AI coworker systems, process automation, and data-driven decision support.
             </p>
           </article>
@@ -77,24 +62,30 @@ export default function Home() {
       </SectionShell>
 
       <SectionShell title="The Problem We Address">
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">Widening Skills Gap</h3>
-            <p className="mt-3 text-base leading-8 text-muted">AI adoption is outpacing practical skills development across sectors.</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">Widening Skills Gap</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
+              AI adoption is outpacing practical skills development across sectors.
+            </p>
           </article>
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">Limited Practical Training</h3>
-            <p className="mt-3 text-base leading-8 text-muted">Hands-on learning opportunities remain inaccessible for most learners.</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">Limited Practical Training</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
+              Hands-on learning opportunities remain inaccessible for most learners.
+            </p>
           </article>
           <article className="info-card">
-            <h3 className="text-2xl font-semibold text-ink">Theory-Practice Disconnect</h3>
-            <p className="mt-3 text-base leading-8 text-muted">Many programmes teach concepts without implementation capability.</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink">Theory-Practice Disconnect</h3>
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 md:leading-8 text-ink-soft">
+              Many programmes teach concepts without implementation capability.
+            </p>
           </article>
         </div>
       </SectionShell>
 
       <SectionShell title="Our Solution" intro="Practical. Hands-on. Impact-driven.">
-        <ul className="grid gap-4 text-base leading-8 text-ink md:grid-cols-2">
+        <ul className="grid gap-3 sm:gap-4 md:gap-5 text-sm sm:text-base md:text-lg leading-6 sm:leading-7 md:leading-8 text-ink grid-cols-1 sm:grid-cols-2">
           <li className="info-card">Real AI tools in every session</li>
           <li className="info-card">Cohort-based peer learning</li>
           <li className="info-card">Mentor-guided live projects</li>
@@ -103,7 +94,7 @@ export default function Home() {
       </SectionShell>
 
       <SectionShell title="Impact">
-        <div className="grid gap-4 text-base leading-8 text-ink md:grid-cols-4">
+        <div className="grid gap-3 sm:gap-4 md:gap-5 text-sm sm:text-base md:text-lg leading-6 sm:leading-7 md:leading-8 text-ink grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <div className="info-card">Skilled workforce development</div>
           <div className="info-card">Increased employability outcomes</div>
           <div className="info-card">SME transformation support</div>
@@ -111,16 +102,18 @@ export default function Home() {
         </div>
       </SectionShell>
 
-      <section className="py-16 md:py-20">
-        <div className="site-container flex w-full flex-col items-start justify-between gap-6 rounded-md border border-border px-6 py-10 md:flex-row md:items-center md:px-10">
+      <section className="py-8 sm:py-10 md:py-14 lg:py-16 xl:py-20">
+        <div className="site-container flex w-full flex-col items-start justify-between gap-4 sm:gap-5 md:gap-6 rounded-md border border-border px-4 sm:px-6 py-6 sm:py-8 md:py-10 lg:flex-row lg:items-center">
           <div>
             <p className="section-kicker">Partnership Opportunity</p>
-            <h2 className="mt-2 text-4xl font-semibold text-ink md:text-5xl">Ready to Partner With Us?</h2>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-muted">
+            <h2 className="mt-2 sm:mt-2.5 md:mt-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-ink">
+              Ready to Partner With Us?
+            </h2>
+            <p className="mt-3 sm:mt-4 md:mt-5 max-w-2xl text-sm sm:text-base md:text-lg leading-6 sm:leading-7 md:leading-8 text-ink-soft">
               Join us in transforming Africa&apos;s digital future, one learner, one institution, one system at a time.
             </p>
           </div>
-          <Link href="/partnership" className="btn-primary">
+          <Link href="/partnership" className="btn-primary w-full sm:w-auto text-center">
             Start a Partnership
           </Link>
         </div>
