@@ -20,7 +20,7 @@ export default function ContactPage() {
                         <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3 text-sm sm:text-base md:text-lg leading-6 sm:leading-7 md:leading-8 text-ink">
                             <p>Barfour Frimpong - Operations & Relations</p>
                             <p>+233 592 413 228</p>
-                            <p>info@adtlafrica.org</p>
+                            <p>adtlafrica@gmail.com</p>
                         </div>
                     </div>
                     <ContactForm />

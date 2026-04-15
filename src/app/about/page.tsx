@@ -17,7 +17,7 @@ export default function AboutPage() {
                 description="We are a mission-driven not-for-profit helping partners and clients move from digital ambition to practical, scalable implementation outcomes."
             >
                 <Image
-                    src="/visual-capacity.svg"
+                    src="/ADTL Africa_About.jpg"
                     alt="Illustration of institutional learning and delivery"
                     width={960}
                     height={640}

@@ -18,7 +18,7 @@ export default function ServicesPage() {
                 description="Our services are designed for institutions, governments, NGOs, and private clients that require practical deployment support and durable capability transfer."
             >
                 <Image
-                    src="/adtl-africa-services.png"
+                    src="/ADTL Africa_Services.jpg"
                     alt="Illustration of integrated service delivery"
                     width={960}
                     height={640}

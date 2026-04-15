@@ -34,10 +34,10 @@ export function NewsletterForm() {
             {!status ? (
                 <>
                     <label
-                        className="font-bold text-(--brand-primary) sm:text-sm"
+                        className="text-(--brand-primary) sm:text-sm"
                         htmlFor="newsletter-email"
                     >
-                        JOIN TO GET INSIGHTS ON HOW AI CAN BENEFIT YOU
+                        Join to Get Insights on How AI can Benefit You
                     </label>
 
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center">

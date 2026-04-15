@@ -22,7 +22,7 @@ export function SiteFooter() {
                     <ul className="mt-2 sm:mt-3 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-ink">
                         <li>Barfour Frimpong - Operations & Relations</li>
                         <li>+233 592 413 228</li>
-                        <li>info@adtlafrica.org</li>
+                        <li>adtlafrica@gmail.com</li>
                     </ul>
                 </div>
 
