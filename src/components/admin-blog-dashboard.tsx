@@ -11,6 +11,9 @@ type BlogPost = {
     title: string;
     slug: string;
     summary: string;
+    body?: string;
+    contentHtml?: string;
+    content_html?: string;
     featuredImage?: string | null;
     featured_image?: string | null;
     published: boolean;
@@ -79,15 +82,27 @@ export function AdminBlogDashboard({ posts: initialPosts }: AdminBlogDashboardPr
         setTogglingId(post.id);
 
         try {
+            // First, fetch the full post to get current content
+            const getResponse = await fetch(`/api/blog-post/${post.id}`);
+            if (!getResponse.ok) {
+                throw new Error("Failed to fetch current post");
+            }
+
+            const fullPost = await getResponse.json();
+
+            // Now update with preserved content
             const response = await fetch(`/api/blog-post/${post.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    title: post.title,
-                    slug: post.slug,
-                    summary: post.summary,
-                    body: "", // Required but not updated here
-                    content_html: "",
+                    title: fullPost.title || post.title,
+                    slug: fullPost.slug || post.slug,
+                    summary: fullPost.summary || post.summary,
+                    contentHtml: fullPost.contentHtml || fullPost.content_html || "",
+                    featuredImage: fullPost.featuredImage || fullPost.featured_image || null,
+                    featuredImageAlt: fullPost.featuredImageAlt || fullPost.featured_image_alt || null,
+                    seoTitle: fullPost.seoTitle || null,
+                    seoDescription: fullPost.seoDescription || null,
                     published: !post.published,
                 }),
             });
@@ -96,9 +111,18 @@ export function AdminBlogDashboard({ posts: initialPosts }: AdminBlogDashboardPr
                 throw new Error("Failed to update post");
             }
 
+            // Update local state with toggled published status and preserved values
             setPosts(
                 posts.map((p) =>
-                    p.id === post.id ? { ...p, published: !p.published } : p
+                    p.id === post.id 
+                        ? {
+                            ...p,
+                            published: !p.published,
+                            body: fullPost.body || p.body,
+                            contentHtml: fullPost.contentHtml || p.contentHtml,
+                            content_html: fullPost.content_html || p.content_html,
+                        }
+                        : p
                 )
             );
 

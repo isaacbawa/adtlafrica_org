@@ -81,9 +81,8 @@ export function MobileNavMenu() {
             {/* Mobile Menu Drawer - Smooth Slide from Bottom */}
             <nav
                 id="mobile-nav-drawer"
-                className={`fixed bottom-0 left-0 right-0 z-50 max-h-[90vh] overflow-y-auto border-t border-border bg-white shadow-2xl transition-transform duration-300 ease-out ${
-                    isOpen ? "translate-y-0" : "translate-y-full"
-                }`}
+                className={`fixed bottom-0 left-0 right-0 z-50 max-h-[90vh] overflow-y-auto border-t border-border bg-white shadow-2xl transition-transform duration-300 ease-out ${isOpen ? "translate-y-0" : "translate-y-full"
+                    }`}
                 aria-label="Mobile navigation"
             >
                 <div className="site-container space-y-6 py-6">
