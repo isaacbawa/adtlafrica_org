@@ -62,72 +62,53 @@ export function HeroFlyerCarousel() {
 
     const activeSlide = useMemo(() => slides[activeIndex], [activeIndex]);
 
-    function previous() {
-        setActiveIndex((current) => (current - 1 + slides.length) % slides.length);
-    }
-
-    function next() {
-        setActiveIndex((current) => (current + 1) % slides.length);
-    }
-
     return (
-        <section className="relative overflow-hidden">
+        <section className="relative min-h-[70vh] lg:min-h-[80vh] overflow-hidden">
 
             {/* Background Image */}
-            <div className="absolute inset-0">
-                <Image
-                    src={activeSlide.image}
-                    alt={activeSlide.imageAlt}
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-cover"
-                />
-            </div>
+            <Image
+                src={activeSlide.image}
+                alt={activeSlide.imageAlt}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+            />
 
-            {/* Dark gradient for readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
+            {/* FULL BRAND OVERLAY */}
+            <div className="absolute inset-0 bg-[color:var(--brand-primary)]/70" />
 
-            <div className="relative z-10 site-container py-20 md:py-28 lg:py-36">
+            {/* CONTENT */}
+            <div className="relative z-10 site-container flex min-h-[70vh] lg:min-h-[80vh] items-center">
 
-                <div className="max-w-2xl">
+                <div className="max-w-3xl text-white">
 
-                    {/* Text Container with Brand Overlay */}
-                    <div className="rounded-xl backdrop-blur-md bg-[color:var(--brand-primary)]/85 p-6 md:p-8 lg:p-10 shadow-2xl">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                        {activeSlide.title}
+                    </h1>
 
-                        {activeSlide.kicker && (
-                            <p className="text-xs font-semibold uppercase tracking-widest text-white/80">
-                                {activeSlide.kicker}
-                            </p>
-                        )}
+                    <p className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed text-white/90">
+                        {activeSlide.body}
+                    </p>
 
-                        <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
-                            {activeSlide.title}
-                        </h1>
+                    <div className="mt-6 flex flex-wrap gap-3">
+                        <Link
+                            href={activeSlide.primaryCta.href}
+                            className="btn-primary text-sm"
+                        >
+                            {activeSlide.primaryCta.label}
+                        </Link>
 
-                        <p className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed text-white/90">
-                            {activeSlide.body}
-                        </p>
-
-                        <div className="mt-6 flex flex-wrap gap-3">
-                            <Link
-                                href={activeSlide.primaryCta.href}
-                                className="btn-primary text-sm"
-                            >
-                                {activeSlide.primaryCta.label}
-                            </Link>
-
-                            <Link
-                                href={activeSlide.secondaryCta.href}
-                                className="btn-secondary text-sm"
-                            >
-                                {activeSlide.secondaryCta.label}
-                            </Link>
-                        </div>
+                        <Link
+                            href={activeSlide.secondaryCta.href}
+                            className="btn-secondary text-sm bg-white text-black hover:bg-white/90"
+                        >
+                            {activeSlide.secondaryCta.label}
+                        </Link>
                     </div>
 
                     {/* Carousel Indicators */}
-                    <div className="mt-6 flex items-center gap-2">
+                    <div className="mt-8 flex items-center gap-2">
                         {slides.map((slide, index) => (
                             <button
                                 key={slide.title}
@@ -142,6 +123,7 @@ export function HeroFlyerCarousel() {
                             />
                         ))}
                     </div>
+
                 </div>
 
             </div>

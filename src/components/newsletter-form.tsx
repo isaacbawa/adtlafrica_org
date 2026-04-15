@@ -34,7 +34,7 @@ export function NewsletterForm() {
             {!status ? (
                 <>
                     <label
-                        className="field-label font-bold text-white sm:text-sm"
+                        className="font-bold text-(--brand-primary) sm:text-sm"
                         htmlFor="newsletter-email"
                     >
                         JOIN TO GET INSIGHTS ON HOW AI CAN BENEFIT YOU
