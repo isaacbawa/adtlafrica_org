@@ -30,15 +30,15 @@ export function NewsletterForm() {
     }
 
     return (
-        <form id="newsletter" onSubmit={onSubmit} className="border border-border rounded-md p-0.5 sm:p-5">
+        <form id="newsletter" onSubmit={onSubmit} className="p-0.5 sm:p-5">
             {!status ? (
                 <>
-                    <label
+                    {/* <label
                         className="text-(--brand-primary) sm:text-sm"
                         htmlFor="newsletter-email"
                     >
                         Join to Get Insights on How AI can Benefit You
-                    </label>
+                    </label> */}
 
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center">
                         <input

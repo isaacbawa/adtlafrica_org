@@ -50,7 +50,7 @@ export function SiteFooter() {
                 </div>
 
                 <div>
-                    <h2 className="text-sm sm:text-base font-semibold uppercase tracking-[0.12em] text-ink-soft">
+                    <h2 className="text-(--brand-primary) text-sm sm:text-base font-semibold uppercase tracking-[0.12em] text-ink-soft">
                         Engage
                     </h2>
                     <p className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 text-ink-soft">
