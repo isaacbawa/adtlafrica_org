@@ -71,57 +71,79 @@ export function HeroFlyerCarousel() {
     }
 
     return (
-        <section className="py-8 sm:py-10 md:py-12 lg:py-16">
-            <div className="site-container">
-                <div className="bg-white p-3 sm:p-4 md:p-6">
-                    <div className="grid items-stretch gap-4 sm:gap-5 md:gap-6 grid-cols-1 lg:grid-cols-[1.08fr_0.92fr]">
-                        <div className="order-2 lg:order-1">
-                            <p className="section-kicker">{activeSlide.kicker}</p>
-                            <h1 className="mt-2 sm:mt-3 md:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-6xl leading-snug md:leading-tight lg:leading-[1.05] text-ink">
-                                {activeSlide.title}
-                            </h1>
-                            <p className="mt-3 sm:mt-4 md:mt-5 max-w-3xl text-xs sm:text-sm md:text-base lg:text-lg leading-5 sm:leading-6 md:leading-7 lg:leading-8 text-ink-soft">
-                                {activeSlide.body}
+        <section className="relative overflow-hidden">
+
+            {/* Background Image */}
+            <div className="absolute inset-0">
+                <Image
+                    src={activeSlide.image}
+                    alt={activeSlide.imageAlt}
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover"
+                />
+            </div>
+
+            {/* Dark gradient for readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
+
+            <div className="relative z-10 site-container py-20 md:py-28 lg:py-36">
+
+                <div className="max-w-2xl">
+
+                    {/* Text Container with Brand Overlay */}
+                    <div className="rounded-xl backdrop-blur-md bg-[color:var(--brand-primary)]/85 p-6 md:p-8 lg:p-10 shadow-2xl">
+
+                        {activeSlide.kicker && (
+                            <p className="text-xs font-semibold uppercase tracking-widest text-white/80">
+                                {activeSlide.kicker}
                             </p>
+                        )}
 
-                            <div className="mt-5 sm:mt-6 md:mt-7 flex flex-wrap gap-2 sm:gap-3">
-                                <Link href={activeSlide.primaryCta.href} className="btn-primary text-xs sm:text-sm">
-                                    {activeSlide.primaryCta.label}
-                                </Link>
-                                <Link href={activeSlide.secondaryCta.href} className="btn-secondary text-xs sm:text-sm">
-                                    {activeSlide.secondaryCta.label}
-                                </Link>
-                            </div>
+                        <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
+                            {activeSlide.title}
+                        </h1>
 
-                            <div className="mt-5 sm:mt-6 md:mt-7 flex items-center gap-1.5 sm:gap-2">
-                                {slides.map((slide, index) => (
-                                    <button
-                                        key={slide.title}
-                                        type="button"
-                                        onClick={() => setActiveIndex(index)}
-                                        className={`rounded-full transition-all ${index === activeIndex ? "h-2 w-6 sm:w-8 bg-brand-primary" : "h-2 w-2 sm:w-2.5 bg-border hover:bg-brand-primary"}`}
-                                        aria-label={`Go to slide ${index + 1}`}
-                                        aria-current={index === activeIndex}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        <p className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed text-white/90">
+                            {activeSlide.body}
+                        </p>
 
-                        <div className="order-1 lg:order-2">
-                            <div className="relative overflow-hidden rounded-md border border-border bg-surface-soft">
-                                <Image
-                                    src={activeSlide.image}
-                                    alt={activeSlide.imageAlt}
-                                    width={960}
-                                    height={640}
-                                    priority={true}
-                                    sizes="(max-width: 768px) 100vw, 46vw"
-                                    className="h-auto w-full"
-                                />
-                            </div>
+                        <div className="mt-6 flex flex-wrap gap-3">
+                            <Link
+                                href={activeSlide.primaryCta.href}
+                                className="btn-primary text-sm"
+                            >
+                                {activeSlide.primaryCta.label}
+                            </Link>
+
+                            <Link
+                                href={activeSlide.secondaryCta.href}
+                                className="btn-secondary text-sm"
+                            >
+                                {activeSlide.secondaryCta.label}
+                            </Link>
                         </div>
                     </div>
+
+                    {/* Carousel Indicators */}
+                    <div className="mt-6 flex items-center gap-2">
+                        {slides.map((slide, index) => (
+                            <button
+                                key={slide.title}
+                                type="button"
+                                onClick={() => setActiveIndex(index)}
+                                className={`rounded-full transition-all ${index === activeIndex
+                                    ? "h-2 w-8 bg-white"
+                                    : "h-2 w-2 bg-white/50 hover:bg-white"
+                                    }`}
+                                aria-label={`Go to slide ${index + 1}`}
+                                aria-current={index === activeIndex}
+                            />
+                        ))}
+                    </div>
                 </div>
+
             </div>
         </section>
     );
