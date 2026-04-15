@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { SectionShell } from "@/components/section-shell";
+import { AdminBlogDashboard } from "@/components/admin-blog-dashboard";
 import { getUserRole } from "@/lib/auth";
 import { hasClerk } from "@/lib/env";
 import { getAllBlogPosts } from "@/lib/repository";
-import { BlogPostsManager } from "@/components/blog-posts-manager";
 
 export const metadata: Metadata = {
     title: "Manage Blog",
@@ -32,27 +31,15 @@ export default async function AdminBlogPage() {
         redirect("/");
     }
 
-    const isAdmin = true;
     const posts = await getAllBlogPosts();
 
     return (
         <main>
             <SectionShell
                 title="Blog Management"
-                intro="Create, edit, and manage blog posts with rich text editor, images, and SEO optimization."
+                intro="Create, edit, publish, and manage all your blog posts with rich text editing, images, and SEO optimization."
             >
-                <div className="space-y-6">
-                    {/* Create New Post Button */}
-                    <Link
-                        href="/admin/blog/create"
-                        className="inline-block px-6 py-3 rounded-lg bg-brand-primary text-white font-semibold hover:bg-opacity-90 transition-opacity"
-                    >
-                        + Create New Post
-                    </Link>
-
-                    {/* Posts Manager */}
-                    <BlogPostsManager initialPosts={posts} isAdmin={isAdmin} />
-                </div>
+                <AdminBlogDashboard posts={posts} />
             </SectionShell>
         </main>
     );
