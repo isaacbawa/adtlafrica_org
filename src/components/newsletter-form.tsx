@@ -31,8 +31,8 @@ export function NewsletterForm() {
 
     return (
         <form id="newsletter" onSubmit={onSubmit} className="space-y-2 sm:space-y-3">
-            <label className="field-label text-xs sm:text-sm" htmlFor="newsletter-email">
-                Email address
+            <label className="fieldS-label font-bold text-white sm:text-sm" htmlFor="newsletter-email">
+                JOIN TO GET INSIGHTS ON HOW AI CAN BENEFIT YOU
             </label>
             <div className="flex flex-col gap-2 sm:gap-3 sm:flex-row">
                 <input
@@ -40,7 +40,7 @@ export function NewsletterForm() {
                     className="field-input mt-0 text-xs sm:text-sm flex-1 sm:flex-auto"
                     type="email"
                     required
-                    placeholder="name@organization.org"
+                    placeholder="Enter your email..."
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
@@ -48,7 +48,7 @@ export function NewsletterForm() {
                     {loading ? "Submitting..." : "Subscribe"}
                 </button>
             </div>
-            {status ? <p className="text-xs sm:text-sm text-ink-soft">{status}</p> : null}
+            {status ? <p className="text-white sm:text-sm text-ink-soft">{status}</p> : null}
         </form>
     );
 }

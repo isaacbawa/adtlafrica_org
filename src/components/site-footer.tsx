@@ -3,7 +3,7 @@ import { NewsletterForm } from "@/components/newsletter-form";
 
 export function SiteFooter() {
     return (
-        <footer className="mt-12 sm:mt-16 md:mt-20 lg:mt-24 border-t border-border bg-surface-soft">
+        <footer className="mt-12 sm:mt-16 md:mt-20 lg:mt-24 border-t border-border bg-gray-950 text-white">
             <div className="site-container grid gap-6 sm:gap-8 md:gap-10 py-8 sm:py-10 md:py-12 lg:py-14 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                 <div>
                     <h2 className="text-sm sm:text-base font-semibold uppercase tracking-[0.12em] text-ink-soft">
