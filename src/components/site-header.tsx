@@ -30,8 +30,8 @@ export function SiteHeader({ clerkEnabled }: SiteHeaderProps) {
                     />
                 </Link>
 
-                <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
-                    {/* Utility Nav - Hidden on mobile */}
+                <div className="flex items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4">
+                    {/* Utility Nav - Hidden on mobile, visible on desktop */}
                     <nav aria-label="Utility" className="hidden md:block">
                         <ul className="flex items-center gap-3 lg:gap-4 text-xs font-semibold text-ink-soft sm:text-sm">
                             {utilityNavItems.map((item) => (
@@ -47,15 +47,15 @@ export function SiteHeader({ clerkEnabled }: SiteHeaderProps) {
                         </ul>
                     </nav>
 
-                    {/* Subscribe Button - Hidden on mobile, smaller on tablet */}
+                    {/* Subscribe Button - Hidden on mobile */}
                     <a
                         href="#newsletter"
-                        className="btn-primary hidden sm:inline-block text-xs sm:text-sm"
+                        className="btn-primary hidden sm:inline-block text-xs text-center py-2 px-3 sm:text-sm sm:px-4 sm:py-2.5"
                     >
                         Subscribe
                     </a>
 
-                    {/* Mobile Menu - Only visible on mobile/tablet */}
+                    {/* Mobile Hamburger Menu - Only visible on small screens */}
                     <MobileNavMenu />
                 </div>
             </div>

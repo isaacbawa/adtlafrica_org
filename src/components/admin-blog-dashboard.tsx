@@ -162,11 +162,10 @@ export function AdminBlogDashboard({ posts: initialPosts }: AdminBlogDashboardPr
                         <button
                             key={filter}
                             onClick={() => setFilterPublished(filter)}
-                            className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full transition-colors ${
-                                filterPublished === filter
+                            className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full transition-colors ${filterPublished === filter
                                     ? "bg-brand-primary text-white"
                                     : "bg-surface-soft text-ink hover:bg-border"
-                            }`}
+                                }`}
                         >
                             {filter === "all" && "All Posts"}
                             {filter === "published" && "Published"}
@@ -229,11 +228,10 @@ export function AdminBlogDashboard({ posts: initialPosts }: AdminBlogDashboardPr
                                         {/* Status Badge */}
                                         <div className="shrink-0">
                                             <span
-                                                className={`inline-block px-2.5 py-1 text-xs font-semibold rounded-full ${
-                                                    post.published
+                                                className={`inline-block px-2.5 py-1 text-xs font-semibold rounded-full ${post.published
                                                         ? "bg-green-100 text-green-700"
                                                         : "bg-yellow-100 text-yellow-700"
-                                                }`}
+                                                    }`}
                                             >
                                                 {post.published ? "Published" : "Draft"}
                                             </span>
@@ -260,17 +258,16 @@ export function AdminBlogDashboard({ posts: initialPosts }: AdminBlogDashboardPr
                                     <button
                                         onClick={() => togglePublish(post)}
                                         disabled={togglingId === post.id}
-                                        className={`px-3 py-1.5 text-xs font-medium rounded transition-colors disabled:opacity-60 ${
-                                            post.published
+                                        className={`px-3 py-1.5 text-xs font-medium rounded transition-colors disabled:opacity-60 ${post.published
                                                 ? "bg-yellow-100 text-yellow-700 hover:bg-yellow-200"
                                                 : "bg-green-100 text-green-700 hover:bg-green-200"
-                                        }`}
+                                            }`}
                                     >
                                         {togglingId === post.id
                                             ? "Updating..."
                                             : post.published
-                                              ? "Unpublish"
-                                              : "Publish"}
+                                                ? "Unpublish"
+                                                : "Publish"}
                                     </button>
                                     <button
                                         onClick={() => handleDelete(post.id)}
