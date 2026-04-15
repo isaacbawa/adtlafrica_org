@@ -98,8 +98,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("heading", { level: 1 })
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Heading 1"
                 >
@@ -109,8 +109,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("heading", { level: 2 })
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Heading 2"
                 >
@@ -120,8 +120,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("heading", { level: 3 })
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Heading 3"
                 >
@@ -133,8 +133,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleBold().run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("bold")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Bold"
                 >
@@ -144,8 +144,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleItalic().run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("italic")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Italic"
                 >
@@ -155,8 +155,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleStrike().run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("strike")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Strikethrough"
                 >
@@ -168,8 +168,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleBulletList().run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("bulletList")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Bullet List"
                 >
@@ -179,8 +179,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleOrderedList().run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("orderedList")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Ordered List"
                 >
@@ -190,8 +190,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("codeBlock")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Code Block"
                 >
@@ -201,8 +201,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={() => editor.chain().focus().toggleBlockquote().run()}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("blockquote")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Blockquote"
                 >
@@ -214,8 +214,8 @@ export function RichTextEditor({ content, onChange, placeholder = "Write your bl
                 <button
                     onClick={addLink}
                     className={`px-3 py-2 rounded text-sm font-semibold transition-colors ${editor.isActive("link")
-                            ? "bg-brand-primary text-white"
-                            : "bg-white text-ink border border-border hover:bg-gray-100"
+                        ? "bg-brand-primary text-white"
+                        : "bg-white text-ink border border-border hover:bg-gray-100"
                         }`}
                     title="Add Link"
                 >

@@ -15,20 +15,20 @@ export async function GET(request: Request) {
         const role = permission.role || "public";
 
         const rows = role === "public"
-            ? await db`
-                SELECT id, title, slug, summary, featured_image AS "featuredImage", featured_image_alt AS "featuredImageAlt", 
+            ? (await db`
+                SELECT id, title, slug, summary, featured_image AS "featuredImage", featured_image_alt AS "featuredImageAlt",
                        seo_title AS "seoTitle", seo_description AS "seoDescription", published, created_at AS "createdAt"
                 FROM blog_posts
                 WHERE published = TRUE
                 ORDER BY created_at DESC
-              `
-            : await db`
+              `) as any[]
+            : (await db`
                 SELECT id, title, slug, summary, featured_image AS "featuredImage", featured_image_alt AS "featuredImageAlt",
-                       content_html AS "contentHtml", seo_title AS "seoTitle", seo_description AS "seoDescription", 
+                       content_html AS "contentHtml", seo_title AS "seoTitle", seo_description AS "seoDescription",
                        published, created_at AS "createdAt", updated_at AS "updatedAt"
                 FROM blog_posts
                 ORDER BY created_at DESC
-              `;
+              `) as any[];
 
         serverLogger.info({ action: "blog_posts_fetched", count: rows.length, role });
         return Response.json({ data: rows, count: rows.length }, { status: 200 });
@@ -89,9 +89,9 @@ export async function POST(request: Request) {
 
         try {
             // Check if slug already exists
-            const slugExists = await db`
+            const slugExists = (await db`
                 SELECT id FROM blog_posts WHERE slug = ${payload.slug.toLowerCase()}
-            `;
+            `) as any[];
 
             if (slugExists.length > 0) {
                 serverLogger.warn({ action: "blog_create_slug_exists", slug: payload.slug });
@@ -109,12 +109,12 @@ export async function POST(request: Request) {
             const featured_image_alt = payload.featuredImageAlt || null;
             const published = payload.published === true;
 
-            const rows = await db`
+            const rows = (await db`
                 INSERT INTO blog_posts 
                 (title, slug, summary, body, featured_image, featured_image_alt, content_html, seo_title, seo_description, published, created_at, updated_at)
                 VALUES (${title}, ${slug}, ${summary}, ${summary}, ${featured_image}, ${featured_image_alt}, ${contentHtml}, ${seoTitle}, ${seoDescription}, ${published}, NOW(), NOW())
                 RETURNING id, created_at AS "createdAt"
-            `;
+            `) as any[];
 
             const postId = rows[0]?.id;
             serverLogger.info({ action: "blog_post_created", postId, userId, title, slug, published });
