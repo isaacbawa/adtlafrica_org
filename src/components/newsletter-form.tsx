@@ -30,25 +30,39 @@ export function NewsletterForm() {
     }
 
     return (
-        <form id="newsletter" onSubmit={onSubmit} className="space-y-2 sm:space-y-3">
-            <label className="fieldS-label font-bold text-white sm:text-sm" htmlFor="newsletter-email">
-                JOIN TO GET INSIGHTS ON HOW AI CAN BENEFIT YOU
-            </label>
-            <div className="flex flex-col gap-2 sm:gap-3 sm:flex-row">
-                <input
-                    id="newsletter-email"
-                    className="field-input mt-0 text-xs sm:text-sm flex-1 sm:flex-auto"
-                    type="email"
-                    required
-                    placeholder="Enter your email..."
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                />
-                <button className="btn-primary text-xs sm:text-sm sm:self-start whitespace-nowrap" type="submit" disabled={loading}>
-                    {loading ? "Submitting..." : "Subscribe"}
-                </button>
-            </div>
-            {status ? <p className="text-white sm:text-sm text-ink-soft">{status}</p> : null}
+        <form id="newsletter" onSubmit={onSubmit} className="border border-border rounded-md p-0.5 sm:p-5">
+            {!status ? (
+                <>
+                    <label
+                        className="fieldS-label font-bold text-white sm:text-sm"
+                        htmlFor="newsletter-email"
+                    >
+                        JOIN TO GET INSIGHTS ON HOW AI CAN BENEFIT YOU
+                    </label>
+
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-center">
+                        <input
+                            id="newsletter-email"
+                            className="field-input mt-0 text-xs sm:text-sm flex-1 h-11"
+                            type="email"
+                            required
+                            placeholder="Your email..."
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+
+                        <button
+                            className="btn-primary text-xs sm:text-sm h-11 px-5 whitespace-nowrap"
+                            type="submit"
+                            disabled={loading}
+                        >
+                            {loading ? "Submitting..." : "Subscribe"}
+                        </button>
+                    </div>
+                </>
+            ) : (
+                <p className="text-white sm:text-sm">{status}</p>
+            )}
         </form>
     );
 }
