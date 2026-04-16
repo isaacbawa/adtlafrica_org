@@ -2,6 +2,8 @@ import { assertRole, getUserId } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 import { jsonError } from "@/lib/http";
 import { serverLogger } from "@/lib/server-logger";
+import { submitSingleUrlToIndexNow } from "@/lib/indexnow";
+import { env } from "@/lib/env";
 
 export async function GET(request: Request) {
     const db = getDb();
@@ -118,6 +120,14 @@ export async function POST(request: Request) {
 
             const postId = rows[0]?.id;
             serverLogger.info({ action: "blog_post_created", postId, userId, title, slug, published });
+
+            // Submit to IndexNow if published
+            if (published) {
+                const postUrl = `${env.siteUrl}/blog/${slug}`;
+                submitSingleUrlToIndexNow(postUrl).catch((error) => {
+                    serverLogger.error("Failed to submit blog post to IndexNow", { postId, slug, error });
+                });
+            }
 
             return Response.json({
                 id: postId,

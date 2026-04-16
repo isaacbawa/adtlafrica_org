@@ -22,7 +22,7 @@ export default function ServicesPage() {
                     alt="Illustration of integrated service delivery"
                     width={960}
                     height={640}
-                    className="mb-3 sm:mb-4 h-auto w-full rounded-md border border-border"
+                    className="h-auto w-full rounded-md border border-border"
                 />
                 <p className="section-kicker">Service Promise</p>
                 <p className="mt-2 sm:mt-3 text-xs sm:text-sm md:text-base leading-6 sm:leading-7 md:leading-8 text-ink">
@@ -34,26 +34,48 @@ export default function ServicesPage() {
                 title="Services"
                 intro="ADTL Africa delivers practical solutions for both implementation partners and service clients across Africa."
             >
-                <div className="grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 md:grid-cols-2">
+                <div className="grid gap-6 sm:gap-7 md:gap-8 grid-cols-1 md:grid-cols-2">
                     {serviceCards.map((service) => (
-                        <article key={service.title} className="info-card">
-                            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-ink">
-                                {service.title}
-                            </h3>
-                            <dl className="mt-4 sm:mt-5 space-y-3 sm:space-y-4 text-xs sm:text-sm md:text-base leading-6 sm:leading-7 md:leading-8">
-                                <div>
-                                    <dt className="font-semibold text-ink">What it is</dt>
-                                    <dd className="card-body mt-1">{service.what}</dd>
-                                </div>
-                                <div>
-                                    <dt className="font-semibold text-ink">Who it is for</dt>
-                                    <dd className="card-body mt-1">{service.who}</dd>
-                                </div>
-                                <div>
-                                    <dt className="font-semibold text-ink">Outcome</dt>
-                                    <dd className="card-body mt-1">{service.outcome}</dd>
-                                </div>
-                            </dl>
+                        <article key={service.title} className="service-card group">
+                            {/* Service Image */}
+                            <div>
+                                <Image
+                                    src={service.image}
+                                    alt={`${service.title} visualization`}
+                                    width={400}
+                                    height={200}
+                                    className="service-card-image"
+                                    priority={false}
+                                />
+                            </div>
+
+                            {/* Content Container */}
+                            <div className="service-card-content">
+                                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-ink mb-4 sm:mb-5">
+                                    {service.title}
+                                </h3>
+
+                                <dl className="space-y-3 sm:space-y-4 text-xs sm:text-sm md:text-base leading-6 sm:leading-7 md:leading-8">
+                                    <div>
+                                        <dt className="font-semibold text-ink text-xs sm:text-sm uppercase tracking-wide">
+                                            What it is
+                                        </dt>
+                                        <dd className="card-body mt-1 sm:mt-2">{service.what}</dd>
+                                    </div>
+                                    <div>
+                                        <dt className="font-semibold text-ink text-xs sm:text-sm uppercase tracking-wide">
+                                            Who it is for
+                                        </dt>
+                                        <dd className="card-body mt-1 sm:mt-2">{service.who}</dd>
+                                    </div>
+                                    <div>
+                                        <dt className="font-semibold text-ink text-xs sm:text-sm uppercase tracking-wide">
+                                            Outcome
+                                        </dt>
+                                        <dd className="card-body mt-1 sm:mt-2">{service.outcome}</dd>
+                                    </div>
+                                </dl>
+                            </div>
                         </article>
                     ))}
                 </div>

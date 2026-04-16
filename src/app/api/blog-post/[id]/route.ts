@@ -2,6 +2,8 @@ import { assertRole, getUserId } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 import { jsonError } from "@/lib/http";
 import { serverLogger } from "@/lib/server-logger";
+import { submitSingleUrlToIndexNow } from "@/lib/indexnow";
+import { env } from "@/lib/env";
 
 type Params = {
     id: string;
@@ -149,6 +151,15 @@ export async function PUT(request: Request, { params }: { params: Promise<Params
             }
 
             serverLogger.info({ action: "blog_post_updated", postId, userId, title, slug, published });
+
+            // Submit to IndexNow if published
+            if (published) {
+                const postUrl = `${env.siteUrl}/blog/${slug}`;
+                submitSingleUrlToIndexNow(postUrl).catch((error) => {
+                    serverLogger.error("Failed to submit updated blog post to IndexNow", { postId, slug, error });
+                });
+            }
+
             return Response.json({
                 id: rows[0]?.id,
                 message: "Blog post updated successfully",
