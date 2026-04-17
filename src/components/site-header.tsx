@@ -47,12 +47,21 @@ export function SiteHeader({ clerkEnabled }: SiteHeaderProps) {
                         </ul>
                     </nav>
 
-                    {/* Subscribe Button - Hidden on mobile */}
+                    {/* Dynamic Subscribe and Partner Button*/}
+                    {/* Desktop / Tablet */}
                     <a
-                        href="#newsletter"
-                        className="btn-primary hidden sm:inline-block text-xs text-center py-2 px-3 sm:text-sm sm:px-4 sm:py-2.5"
+                        href="/subscribe"
+                        className="btn-primary hidden sm:inline-block !hidden sm:!inline-block text-xs text-center py-2 px-3 sm:text-sm sm:px-4 sm:py-2.5"
                     >
                         Subscribe
+                    </a>
+
+                    {/* Mobile */}
+                    <a
+                        href="/partnership"
+                        className="btn-primary inline-block sm:hidden !inline-block sm:!hidden text-xs text-center py-2 px-3"
+                    >
+                        Partner with Us
                     </a>
 
                     {/* Mobile Hamburger Menu - Only visible on small screens */}
