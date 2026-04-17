@@ -311,7 +311,7 @@ export default function PrivacyPage() {
       {/* ── PART C ── */}
       <div className="mb-10 mt-16 border-t border-gray-200 pt-12">
         <h2 className="text-xl font-bold uppercase tracking-wide text-gray-900">
-          egal Provisions
+          Legal Provisions
         </h2>
       </div>
 
