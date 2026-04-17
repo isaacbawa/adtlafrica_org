@@ -46,6 +46,16 @@ export function SiteFooter() {
                                 Career
                             </Link>
                         </li>
+                        <li>
+                            <Link href="/career" className="text-ink hover:text-brand-primary transition-colors">
+                                Terms
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/career" className="text-ink hover:text-brand-primary transition-colors">
+                                Privacy Policy
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 

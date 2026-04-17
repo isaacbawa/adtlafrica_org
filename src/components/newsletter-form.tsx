@@ -61,7 +61,7 @@ export function NewsletterForm() {
                     </div>
                 </>
             ) : (
-                <p className="text-white sm:text-sm">{status}</p>
+                <p className="text-green-600 sm:text-sm">{status}</p>
             )}
         </form>
     );
