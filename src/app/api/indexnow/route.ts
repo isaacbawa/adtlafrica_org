@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { submitToIndexNow, generateSitemapUrls } from "@/lib/indexnow";
-import { rateLimit } from "@/lib/rate-limit";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { hasIndexNow } from "@/lib/env";
-import { logger } from "@/lib/server-logger";
+import { serverLogger } from "@/lib/server-logger";
 
 /**
  * POST /api/indexnow
@@ -22,10 +22,10 @@ export async function POST(request: NextRequest) {
     // Rate limiting (1 request per minute per IP)
     const ip = request.headers.get("x-forwarded-for") || "unknown";
     const rateLimitKey = `indexnow-${ip}`;
-    const allowed = await rateLimit(rateLimitKey, 1, 60);
+    const allowed = await checkRateLimit(rateLimitKey, 1, 60);
 
     if (!allowed) {
-      logger.warn("IndexNow endpoint rate limited", { ip });
+      serverLogger.warn("IndexNow endpoint rate limited", { ip });
       return NextResponse.json(
         { error: "Rate limit exceeded. Maximum 1 request per minute." },
         { status: 429 }
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(result, { status: result.status || 400 });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    logger.error("IndexNow API error", { error: errorMessage });
+    serverLogger.error("IndexNow API error", { error: errorMessage });
 
     return NextResponse.json(
       { error: "Internal server error" },
@@ -98,10 +98,10 @@ export async function GET(request: NextRequest) {
     // Rate limiting (1 request per 5 minutes per IP)
     const ip = request.headers.get("x-forwarded-for") || "unknown";
     const rateLimitKey = `indexnow-bulk-${ip}`;
-    const allowed = await rateLimit(rateLimitKey, 1, 300);
+    const allowed = await checkRateLimit(rateLimitKey, 1, 300);
 
     if (!allowed) {
-      logger.warn("IndexNow bulk endpoint rate limited", { ip });
+      serverLogger.warn("IndexNow bulk endpoint rate limited", { ip });
       return NextResponse.json(
         { error: "Rate limit exceeded. Maximum 1 request per 5 minutes." },
         { status: 429 }
@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(result, { status: result.status || 400 });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    logger.error("IndexNow bulk API error", { error: errorMessage });
+    serverLogger.error("IndexNow bulk API error", { error: errorMessage });
 
     return NextResponse.json(
       { error: "Internal server error" },

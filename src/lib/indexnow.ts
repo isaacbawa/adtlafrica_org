@@ -1,5 +1,5 @@
 import { env, hasIndexNow } from "./env";
-import { logger } from "./server-logger";
+import { serverLogger } from "./server-logger";
 
 interface IndexNowSubmissionPayload {
   host: string;
@@ -21,7 +21,7 @@ interface IndexNowResponse {
 export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse> {
   // Skip if IndexNow is not configured
   if (!hasIndexNow) {
-    logger.info("IndexNow not configured, skipping submission");
+    serverLogger.info("IndexNow not configured, skipping submission");
     return {
       success: false,
       message: "IndexNow is not configured",
@@ -30,7 +30,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
 
   // Validate URLs
   if (!urls || urls.length === 0) {
-    logger.warn("No URLs provided for IndexNow submission");
+    serverLogger.warn("No URLs provided for IndexNow submission");
     return {
       success: false,
       message: "No URLs provided",
@@ -51,7 +51,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
       urlList: urlsToSubmit,
     };
 
-    logger.info(`Submitting ${urlsToSubmit.length} URLs to IndexNow`, {
+    serverLogger.info(`Submitting ${urlsToSubmit.length} URLs to IndexNow`, {
       host,
       urlCount: urlsToSubmit.length,
     });
@@ -66,7 +66,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
 
     // Handle response based on status code
     if (response.status === 200) {
-      logger.info(`IndexNow submission successful (${urlsToSubmit.length} URLs)`);
+      serverLogger.info(`IndexNow submission successful (${urlsToSubmit.length} URLs)`);
       return {
         success: true,
         status: 200,
@@ -75,7 +75,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
     }
 
     if (response.status === 400) {
-      logger.error("IndexNow submission failed: Invalid format");
+      serverLogger.error("IndexNow submission failed: Invalid format");
       return {
         success: false,
         status: 400,
@@ -84,7 +84,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
     }
 
     if (response.status === 403) {
-      logger.error("IndexNow submission failed: Invalid key or key location");
+      serverLogger.error("IndexNow submission failed: Invalid key or key location");
       return {
         success: false,
         status: 403,
@@ -93,7 +93,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
     }
 
     if (response.status === 422) {
-      logger.error("IndexNow submission failed: URLs don't belong to host or key mismatch");
+      serverLogger.error("IndexNow submission failed: URLs don't belong to host or key mismatch");
       return {
         success: false,
         status: 422,
@@ -102,7 +102,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
     }
 
     if (response.status === 429) {
-      logger.warn("IndexNow rate limit hit");
+      serverLogger.warn("IndexNow rate limit hit");
       return {
         success: false,
         status: 429,
@@ -112,7 +112,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
 
     // Unexpected status code
     const responseText = await response.text();
-    logger.error(`IndexNow submission failed with status ${response.status}`, {
+    serverLogger.error(`IndexNow submission failed with status ${response.status}`, {
       status: response.status,
       response: responseText,
     });
@@ -124,7 +124,7 @@ export async function submitToIndexNow(urls: string[]): Promise<IndexNowResponse
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
-    logger.error("IndexNow submission error", {
+    serverLogger.error("IndexNow submission error", {
       error: errorMessage,
       stack: error instanceof Error ? error.stack : undefined,
     });
