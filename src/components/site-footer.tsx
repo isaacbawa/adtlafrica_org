@@ -25,17 +25,19 @@ export function SiteFooter() {
                                 <Link
                                     href="https://www.linkedin.com/company/adtlafrica/"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label="LinkedIn"
-                                    className="text-(--brand-primary) hover:text-(--brand-primary) transition-colors"
+                                    className="text-(--brand-primary) hover:opacity-80 transition-colors"
                                 >
                                     <FaLinkedin className="h-6 w-6" />
                                 </Link>
 
                                 <Link
-                                    href="https://www.tiktok.com/@adtlafrica?_r=1&_t=ZS-95amlPJwEOD"
+                                    href="https://www.tiktok.com/@adtlafrica"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label="TikTok"
-                                    className="text-(--brand-primary) hover:text-(--brand-primary) transition-colors"
+                                    className="text-(--brand-primary) hover:opacity-80 transition-colors"
                                 >
                                     <FaTiktok className="h-6 w-6" />
                                 </Link>
@@ -99,10 +101,10 @@ export function SiteFooter() {
                         <NewsletterForm />
                     </div>
                 </div>
-            </div>
+            </div >
             <div className="border-t border-border py-4 sm:py-5 text-center text-xs sm:text-sm text-ink-soft">
                 {new Date().getFullYear()} ADTL Africa. All rights reserved.
             </div>
-        </footer>
+        </footer >
     );
 }
