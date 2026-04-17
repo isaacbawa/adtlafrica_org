@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NewsletterForm } from "@/components/newsletter-form";
+import { FaLinkedin, FaTiktok } from "react-icons/fa";
 
 export function SiteFooter() {
     return (
@@ -13,6 +14,34 @@ export function SiteFooter() {
                         Driving AI and digital transformation across Africa through practical systems, partnerships,
                         and capacity building.
                     </p>
+                    <div className="mt-10 border-t border-border">
+                        <div className="mt-3 flex items-center justify-between">
+
+                            <p className="text-xs sm:text-sm text-ink-soft">
+                                Connect with us on
+                            </p>
+
+                            <div className="flex items-center gap-4">
+                                <Link
+                                    href="https://www.linkedin.com/company/adtlafrica/"
+                                    target="_blank"
+                                    aria-label="LinkedIn"
+                                    className="text-(--brand-primary) hover:text-(--brand-primary) transition-colors"
+                                >
+                                    <FaLinkedin className="h-6 w-6" />
+                                </Link>
+
+                                <Link
+                                    href="https://www.tiktok.com/@adtlafrica?_r=1&_t=ZS-95amlPJwEOD"
+                                    target="_blank"
+                                    aria-label="TikTok"
+                                    className="text-(--brand-primary) hover:text-(--brand-primary) transition-colors"
+                                >
+                                    <FaTiktok className="h-6 w-6" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div>
@@ -55,7 +84,8 @@ export function SiteFooter() {
                             <Link href="/privacy" className="text-ink hover:text-brand-primary transition-colors">
                                 Privacy Policy
                             </Link>
-                        </li>                    </ul>
+                        </li>
+                    </ul>
                 </div>
 
                 <div>
